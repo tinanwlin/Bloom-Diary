@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Navbar from './Navbar'
+import Footer from './Footer'
 
 class Home extends Component {
  render() {
   return(
-   <div id="header">
-    <h1>Welcome To My Blog</h1>
-   </div>
+   false
+   
   );
  }
 }
