@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import Navbar from './Navbar';
 import {LineChart, Line} from 'recharts';
 
 class Profile extends Component {
