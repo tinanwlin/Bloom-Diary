@@ -1,0 +1,5 @@
+
+curl -X POST \
+-H "Content-Type: application/json" \
+-u "ac49cf55-8ee6-485e-aed0-956429714dc0":"Rfeif6hCMbLD" \
+-d @parameters.json "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16"
