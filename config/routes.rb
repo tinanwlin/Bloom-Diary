@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     root "profiles#index"
   end
 
+  #Route to test API
+  post '/watson' => 'watson#make_post_req'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
