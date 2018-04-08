@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     validates :email, uniqueness: { case_sensitive: false }
     validates :password, length: { minimum: 4 }
     
-
+    #helper function for login authentication
     def self.authenticate_with_credentials email, password
       email.strip!
       email.downcase!

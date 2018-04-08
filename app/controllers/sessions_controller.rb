@@ -7,12 +7,13 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       render :json => {
         status: 200,
-        message: "Successfully Login!",
+        data: @user,
+        message: "Successfully Login!"
       }.to_json
     else
       render :json => {
         status: 400,
-        message: "Email or passowrd is invalid",
+        message: "Email or passowrd is invalid"
       }.to_json
     end
   end
@@ -21,7 +22,7 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     render :json => {
       status: 200,
-      message: "Successfully Logout!",
+      message: "Successfully Logout!"
     }.to_json
   end
 
