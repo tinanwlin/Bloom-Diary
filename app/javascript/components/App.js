@@ -18,15 +18,20 @@ class App extends React.Component {
       currentUser:undefined,
       serverResponse:[{}]
     }
+
+    this.setCurrentUser = this.setCurrentUser.bind(this);
   }
 
+  setCurrentUser(sessionData){
+    this.setState({currentUser:sessionData});
+  }
 
 
   render () {
     return (
         <BrowserRouter>
           <div>
-          <NavbarComponent/>
+          <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
               <Route exact path='/' component={Home} />
               <Route path='/profile' component={Profile} />
               <Route path='/user' component={User} />
