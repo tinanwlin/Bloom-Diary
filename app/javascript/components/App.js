@@ -10,6 +10,18 @@ import User from "./User"
 import Test from "./Test"
 
 class App extends React.Component {
+
+  constructor (props){
+    super(props);
+
+    this.state = {
+      currentUser:undefined,
+      serverResponse:[{}]
+    }
+  }
+
+
+
   render () {
     return (
         <BrowserRouter>
