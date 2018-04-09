@@ -11,11 +11,29 @@ import Test from "./Test"
 
 
 class App extends React.Component {
+
+  constructor (props){
+    super(props);
+
+    this.state = {
+      currentUser:null,
+      serverResponse:[{}]
+    }
+
+    this.setCurrentUser = this.setCurrentUser.bind(this);
+  }
+
+  setCurrentUser(sessionData){
+    this.setState({currentUser:sessionData});
+  }
+
+
   render () {
     return (
         <BrowserRouter>
           <div>
-          <NavbarComponent/>
+          <div>lalalalala{this.state.currentUser}</div>
+          <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
               <Route exact path='/' component={Home} />
               <Route path='/profile' component={Profile} />
               <Route path='/user' component={User} />
