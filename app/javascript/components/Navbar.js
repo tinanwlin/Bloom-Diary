@@ -30,7 +30,7 @@ class NavbarComponent extends React.Component {
         <Modal
           header='Login'
           id="loginModal">
-          <form method="post" action="/login">
+          <form method="post" action="/sessions">
           <Input id="loginEmailInput" type="email" label="Email" name = 'email' s={6} />
           <Input id="loginPasswordInput" type="password" label="password" name = 'password' s={6} />
           <Button type="submit" waves='light'>Submit</Button>
