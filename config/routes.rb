@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resource :users, only: [:create]
   resource :sessions, only: [:create, :destroy]
+  get 'me', to: 'users#me'
 
 
   # get 'users/show'
@@ -24,6 +25,10 @@ Rails.application.routes.draw do
   # resources :profiles do
   #   root "profiles#index"
   # end
+  
+   #Route to test API
+  post '/watson' => 'watson#make_post_req'
+ 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
