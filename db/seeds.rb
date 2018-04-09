@@ -44,14 +44,14 @@ User.create!({
 User.create!({
   email: 'berry@berry.com',
   nickname: 'Berry',
-  password: 'abcd'
+  password: 'abcd',
   password_confirmation: 'abcd'
 })
 
 User.create!({
   email: 'beard@beard.com',
   nickname: 'Beard',
-  password: 'abcd'
+  password: 'abcd',
   password_confirmation: 'abcd'
 })
 
