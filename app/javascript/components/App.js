@@ -15,7 +15,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      currentUser:undefined,
+      currentUser:null,
       serverResponse:[{}]
     }
 
@@ -31,6 +31,7 @@ class App extends React.Component {
     return (
         <BrowserRouter>
           <div>
+          <div>lalalalala{this.state.currentUser}</div>
           <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
               <Route exact path='/' component={Home} />
               <Route path='/profile' component={Profile} />

@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 import { Link } from 'react-router-dom'
 import {Navbar,NavItem,Modal,Input,Button} from "react-materialize"
+import { EALREADY } from "constants";
 class NavbarComponent extends React.Component {
   constructor(props){
     super(props);
@@ -27,9 +28,13 @@ class NavbarComponent extends React.Component {
     console.log("$Email",$email,"$Password",$password);
     $.post("/sessions",{email:$email,password:$password},(response)=>{
       console.log("this is response:",response);
-        console.log("nickname:",response.data.nickname);
-        this.props.setUser(response.data.nickname);
+      //sessionStorage.setItem("user_id",response.data.id);
+        //console.log("nickname:",response.data.nickname);
+        if (!response.data){
+          alert(response.object.message)
+        }else{this.props.setUser(response.data.id);
         $('#loginModal').modal('close');
+        }
     });
   }
 
@@ -41,9 +46,11 @@ class NavbarComponent extends React.Component {
     let $confirmpassword =$("#registerConfirmPassword").val();
     $.post('/users',{email:$email,nickname:$nickname,password:$password,password_confirmation:$confirmpassword},(err)=>{
       if (err){
+        let errmsg = "";
         err.errors.forEach((msg)=>{
-          alert(msg);
+          errmsg += msg + "\n";
         });
+        alert(errmsg);
       }else{
         $('#registerModal').modal('close');
       }
@@ -56,6 +63,8 @@ class NavbarComponent extends React.Component {
       type:'DELETE',
       success:()=>{
         this.props.setUser(null);
+        console.log("session deleted");
+        
       }
     })
   }
