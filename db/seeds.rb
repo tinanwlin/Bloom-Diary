@@ -30,25 +30,29 @@ User.destroy_all
 User.create!({
   email: 'pogo@pogo.com',
   nickname: 'Pogo',
-  password: '1234'
+  password: '1234',
+  password_confirmation: '1234'
 })
 
 User.create!({
   email: 'uncle@uncle.com',
   nickname: 'Uncle',
-  password: '1234'
+  password: '1234',
+  password_confirmation: '1234'
 })
 
 User.create!({
   email: 'berry@berry.com',
   nickname: 'Berry',
-  password: 'abcd'
+  password: 'abcd',
+  password_confirmation: 'abcd'
 })
 
 User.create!({
   email: 'beard@beard.com',
   nickname: 'Beard',
-  password: 'abcd'
+  password: 'abcd',
+  password_confirmation: 'abcd'
 })
 
 
