@@ -21,6 +21,10 @@ Rails.application.routes.draw do
 
   #Route to test API
   post '/watson' => 'watson#make_post_req'
+  
+  # session - Login - Logout
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
