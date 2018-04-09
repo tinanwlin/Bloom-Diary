@@ -32,7 +32,9 @@ class NavbarComponent extends React.Component {
         //console.log("nickname:",response.data.nickname);
         if (!response.data){
           alert(response.message)
-        }else{this.props.setUser(response.data.id);
+        }else{
+          $.get('/me',({data})=> console.log("/me:",data));
+          this.props.setUser(response.data.id);
         $('#loginModal').modal('close');
         }
     });
