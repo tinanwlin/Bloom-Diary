@@ -7,7 +7,6 @@ class WatsonController < ApplicationController
         require 'uri'
         require 'json'
 
-    
         begin
         
             uri = URI.parse("https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16")
@@ -40,32 +39,3 @@ class WatsonController < ApplicationController
         end
     end
 end
-
-
-
-# uri = URI.parse("https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16")
-#             request = Net::HTTP::Post.new(uri)
-#             request.basic_auth("ac49cf55-8ee6-485e-aed0-956429714dc0", "Rfeif6hCMbLD")
-#             request.content_type = "application/json"
-#             request.body = {
-#                 "text": "I'm very happy when I'm at home",
-#                 "features": {
-#                   "entities": {
-#                     "emotion": false,
-#                     "sentiment": false,
-#                     "limit": 2
-#                   },
-#                   "keywords": {
-#                     "emotion": true,
-#                     "sentiment": false,
-#                     "limit": 2
-#                   }
-#                 }
-#               }
-
-#             req_options = {
-#             use_ssl: uri.scheme == "https",
-#             }
-              
-#             response = Net::HTTP.start(uri.host, uri.port, req_options) {|http| http.request(request)}
-          
