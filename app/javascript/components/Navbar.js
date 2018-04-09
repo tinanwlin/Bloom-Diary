@@ -1,9 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
-import { Link } from 'react-router-dom'
-import {Navbar,NavItem,Modal,Input,Button} from "react-materialize"
-import { EALREADY } from "constants";
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import {Navbar,NavItem,Modal,Input,Button} from "react-materialize";
+
 class NavbarComponent extends React.Component {
   constructor(props){
     super(props);
@@ -28,8 +28,6 @@ class NavbarComponent extends React.Component {
     console.log("$Email",$email,"$Password",$password);
     $.post("/sessions",{email:$email,password:$password},(response)=>{
       console.log("this is response:",response);
-      //sessionStorage.setItem("user_id",response.data.id);
-        //console.log("nickname:",response.data.nickname);
         if (!response.data){
           alert(response.message)
         }else{this.props.setUser(response.data.id);
