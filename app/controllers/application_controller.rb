@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   before_action :current_user
-  # protect_from_forgery prepend: true, with: :exception
+  protect_from_forgery prepend: true, with: :exception
 
   private
   
