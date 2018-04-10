@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   
   root to: 'homes#index'
 
-  resource :users, only: [:create]
-  resource :sessions, only: [:create, :destroy]
-  get 'me', to: 'users#me'
-
-
+  #namespace :api do
+    resource :users, only: [:create]
+    resource :sessions, only: [:create, :destroy]
+    get 'me', to: 'users#me'
+  #end
 
   # get 'users/show'
 
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
    #Route to test API
   post '/watson' => 'watson#make_post_req'
  
+  match "*stuff",to: "homes#index",via: :all
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
