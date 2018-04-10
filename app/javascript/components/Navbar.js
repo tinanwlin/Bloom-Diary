@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { Link } from 'react-router-dom';
-import {Navbar,NavItem,Modal,Input,Button} from "react-materialize";
-=======
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import { Link,Redirect } from 'react-router-dom'
 import {Navbar,NavItem,Modal,Input,Button} from "react-materialize"
->>>>>>> feature/home/grid
 
 class NavbarComponent extends React.Component {
   constructor(props){
@@ -35,10 +27,6 @@ class NavbarComponent extends React.Component {
     let $password= $("#loginPassword").val();
     console.log("$Email",$email,"$Password",$password);
     $.post("/sessions",{email:$email,password:$password},(response)=>{
-<<<<<<< HEAD
-      console.log("this is response:",response);
-=======
->>>>>>> feature/home/grid
         if (!response.data){
           alert(response.message)
         }else{
