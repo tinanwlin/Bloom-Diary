@@ -12,10 +12,7 @@ class WatsonController < ApplicationController
 
         puts "call watson!!"
         content = Sanitize.clean(params['content'])
-
-        puts temp
-
-
+        puts content
         begin
         
             uri = URI.parse("https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16")
@@ -54,10 +51,10 @@ class WatsonController < ApplicationController
 
           #  This is hard code. We need to change this.
             location = "Taipei"
-            user_id = 2
+            user_id = 7
             weather = "Sunny"
             email = User.find(user_id).email
-            journal_id = 9
+            journal_id = 10
             
 
             if journal = Journal.check_journal(email, journal_id)

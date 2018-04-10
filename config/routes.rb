@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :journals, only: [:index, :create, :show]
   end
   
-  resources :sessions, only: [:create, :destroy]  
+  resource :sessions, only: [:create, :destroy]  
   get 'me', to: 'users#me'
   #end
   
