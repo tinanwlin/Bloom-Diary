@@ -87,8 +87,18 @@ class NavbarComponent extends React.Component {
     }else{
       return(
         <React.Fragment>
-          <NavItem onClick={() => { $('#loginModal').modal('open') }}>Login</NavItem>
-          <NavItem onClick={() => { $('#registerModal').modal('open') }}>Register</NavItem>
+          <NavItem onClick={() => { 
+            $("#loginEmail").val("");
+            $("#loginPassword").val("");
+            $('#loginModal').modal('open');
+             }}>Login</NavItem>
+          <NavItem onClick={() => { 
+            $("#registerEmail").val("");
+            $("#registerPassword").val("");
+            $("#registerNickname").val("");
+            $("#registerConfirmPassword").val("");
+            $('#registerModal').modal('open');
+             }}>Register</NavItem>
         </React.Fragment>
       );
     }
