@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   # end
   
    #Route to test API
-  post '/watson' => 'watson#make_post_req'
- 
+  post '/watson' => 'watson#natural_language_understanding'
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

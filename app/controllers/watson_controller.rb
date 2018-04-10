@@ -1,8 +1,8 @@
 class WatsonController < ApplicationController
     protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
   
-    def make_post_req  
-        puts "testing in process"
+    def natural_language_understanding 
+        
         require 'net/http'
         require 'uri'
         require 'json'
@@ -24,7 +24,7 @@ class WatsonController < ApplicationController
                           },
                           "keywords"=> {
                             "emotion"=> true,
-                            "sentiment"=> false,
+                            "sentiment"=> true,
                             "limit"=> 2
                           }
                         }
@@ -33,9 +33,56 @@ class WatsonController < ApplicationController
             req.basic_auth("ac49cf55-8ee6-485e-aed0-956429714dc0", "Rfeif6hCMbLD")
 
             response = http.request(req)
-            puts 'result------------'
-            puts response.body
-           
+            results = JSON.parse(response.body)
+
+            sadness = results["keywords"][0]["emotion"]["sadness"]
+            joy = results["keywords"][0]["emotion"]["joy"]
+            fear = results["keywords"][0]["emotion"]["fear"]
+            disgust = results["keywords"][0]["emotion"]["disgust"]
+            anger = results["keywords"][0]["emotion"]["anger"]
+            sentiment_score = results["keywords"][0]["sentiment"]["score"]
+          
+          #  This is hard code. We need to change this.
+            description = "I'm very happy when I'm at home"
+            location = "São Paulo"
+            user_id = 1
+            weather = "Low priority"
+            email = User.find(user_id).email
+            journal_id = 7
+
+
+            if journal = Journal.check_journal(email, journal_id)
+
+              journal.update({
+                content: description,
+                sentiment_score: sentiment_score,
+                joy: joy,
+                anger: anger,
+                disgust: disgust,
+                sadness: sadness,
+                fear: fear,
+                location: location,
+                weather: weather,
+              })
+              
+              redirect_to '/'
+
+            else
+              Journal.create!({
+                user_id: user_id,
+                content: description,
+                sentiment_score: sentiment_score,
+                joy: joy,
+                anger: anger,
+                disgust: disgust,
+                sadness: sadness,
+                fear: fear,
+                location: location,
+                weather: weather,
+              })
+              redirect_to '/'
+
+            end
         end
     end
 end
