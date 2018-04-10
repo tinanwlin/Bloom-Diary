@@ -10,7 +10,6 @@ class Home extends React.Component {
         <h1>This is the homepage</h1>
 
         <Journal/>
-
  
          {/* Simulation to test Watson API */}
         <h3>this is the index page in the home controller</h3>
