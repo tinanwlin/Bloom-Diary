@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   
   root to: 'homes#index'
 
-  resource :users, only: [:create]
-  resource :sessions, only: [:create, :destroy]
+  
+  resources :users, only: [:create] do
+    resources :journals, only: [:index, :create, :show]
+  end
+  
+  resources :sessions, only: [:create, :destroy]
+  
   get 'me', to: 'users#me'
 
 

@@ -14,7 +14,7 @@ class Journal extends React.Component {
     this.handleJournalSubmit = this.handleJournalSubmit.bind(this);
   }
 
-  onChange(evt){
+  onChange(evt) {
     console.log("onChange fired with event info: ", evt);
     var newContent = evt.editor.getData();
     console.log(newContent)
@@ -24,16 +24,23 @@ class Journal extends React.Component {
   }
 
 
-  handleJournalSubmit(event){
+  handleJournalSubmit(event) {
     console.log("click journal submit!");
     let $journalContent = this.state.content;
-    console.log("content", $journalContent);
-    $.post("/journals", {content: $journalContent}, (response) => {
-      console.log("this is response:",response);
+    var cookieObj = (document.cookie).split(', ');
+    var result = {};
+    for (var i = 0; i < cookieObj.length; i++) {
+      var temp = cookieObj[i].split('=');
+      result[temp[0]] = temp[1];
+    }
+    var newResult = JSON.parse(result.user)
+    console.log("content:", $journalContent, "cookie:", newResult.id);
+    $.post("/watson", { content: $journalContent }, (response) => {
+      console.log("response:", response);
     })
   }
- 
-  
+
+
   render() {
     return (
       <React.Fragment>
@@ -41,18 +48,16 @@ class Journal extends React.Component {
         <Modal
           header='Journal'
           id="journalModal">
-          <Input id="journalInput" type="textarea" label="Text" s={30} />
-          <Button waves='light'>Create Journal</Button>
+          <CKEditor
+            activeClass="p10"
+            content={this.state.content}
+            events={{
+              "change": this.onChange
+            }} />
+            
+          <button onClick={this.handleJournalSubmit}>Create Journal</button> 
         </Modal>
-      <div>  
-      <CKEditor 
-        activeClass="p10" 
-        content={this.state.content} 
-        events={{
-          "change": this.onChange
-        }}/>
-      <button onClick={this.handleJournalSubmit}>Create Journal</button>
-      </div>
+        
       </React.Fragment>
     );
   }

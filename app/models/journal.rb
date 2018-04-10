@@ -1,7 +1,7 @@
 class Journal < ActiveRecord::Base
     belongs_to :user
 
-    validates :content, :location, presence: true 
+    # validates :content, :location, presence: true 
 
 
     # currently a class method:
