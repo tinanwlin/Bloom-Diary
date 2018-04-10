@@ -11,7 +11,7 @@ class WatsonController < ApplicationController
         require 'sanitize'
 
         puts "call watson!!"
-        temp = Sanitize.clean(params['content'])
+        content = Sanitize.clean(params['content'])
 
         puts temp
 
@@ -24,7 +24,7 @@ class WatsonController < ApplicationController
             http.verify_mode = OpenSSL::SSL::VERIFY_PEER
             req = Net::HTTP::Post.new(uri.request_uri, initheader = { 'Content-Type'=> "application/json"})
             payload = {
-                        "text" => temp,
+                        "text" => content,
                         "features" => {
                           "entities"=> {
                             "emotion"=> false,
@@ -50,9 +50,9 @@ class WatsonController < ApplicationController
             disgust = results["keywords"][0]["emotion"]["disgust"]
             anger = results["keywords"][0]["emotion"]["anger"]
             sentiment_score = results["keywords"][0]["sentiment"]["score"]
-          
+            description = content
+
           #  This is hard code. We need to change this.
-            description = temp
             location = "Taipei"
             user_id = 2
             weather = "Sunny"
