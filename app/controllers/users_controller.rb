@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-   skip_before_action :verify_authenticity_token  
+
+  skip_before_action :verify_authenticity_token  
 
   def me
     render :json => @current_user
@@ -17,7 +18,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(:nickname, :email, :password, :password_confirmation)
-    # params.require(:user).permit(:nickname, :email, :password, :password_confirmation)
   end
 
 end

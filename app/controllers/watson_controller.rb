@@ -1,12 +1,18 @@
 class WatsonController < ApplicationController
     protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-  
+    
+
+
     def natural_language_understanding 
-        
+
         require 'net/http'
         require 'uri'
         require 'json'
+        require 'sanitize'
 
+        puts "call watson!!"
+        content = Sanitize.clean(params['content'])
+        puts content
         begin
         
             uri = URI.parse("https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16")
@@ -15,7 +21,7 @@ class WatsonController < ApplicationController
             http.verify_mode = OpenSSL::SSL::VERIFY_PEER
             req = Net::HTTP::Post.new(uri.request_uri, initheader = { 'Content-Type'=> "application/json"})
             payload = {
-                        "text" => "I'm very happy when I'm at home",
+                        "text" => content,
                         "features" => {
                           "entities"=> {
                             "emotion"=> false,
@@ -41,15 +47,15 @@ class WatsonController < ApplicationController
             disgust = results["keywords"][0]["emotion"]["disgust"]
             anger = results["keywords"][0]["emotion"]["anger"]
             sentiment_score = results["keywords"][0]["sentiment"]["score"]
-          
-          #  This is hard code. We need to change this.
-            description = "I'm very happy when I'm at home"
-            location = "São Paulo"
-            user_id = 1
-            weather = "Low priority"
-            email = User.find(user_id).email
-            journal_id = 7
+            description = content
 
+          #  This is hard code. We need to change this.
+            location = "Taipei"
+            user_id = 7
+            weather = "Sunny"
+            email = User.find(user_id).email
+            journal_id = 10
+            
 
             if journal = Journal.check_journal(email, journal_id)
 

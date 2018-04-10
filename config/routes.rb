@@ -2,12 +2,16 @@ Rails.application.routes.draw do
   
   root to: 'homes#index'
 
-  #namespace :api do
-    resource :users, only: [:create]
-    resource :sessions, only: [:create, :destroy]
-    get 'me', to: 'users#me'
-  #end
 
+  #namespace :api do
+  resources :users, only: [:create] do
+    resources :journals, only: [:index, :create, :show]
+  end
+  
+  resource :sessions, only: [:create, :destroy]  
+  get 'me', to: 'users#me'
+  #end
+  
   # get 'users/show'
 
   # get 'home/index'

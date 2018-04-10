@@ -26,7 +26,6 @@ class Home extends React.Component {
 
         <Journal/>
 
-
          {/* Simulation to test Watson API */}
         <h3>this is the index page in the home controller</h3>
         <form method="post" action="/watson">
