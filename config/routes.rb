@@ -28,9 +28,9 @@ Rails.application.routes.draw do
   # end
   
    #Route to test API
-  post '/watson' => 'watson#make_post_req'
- 
-  match "*stuff",to: "homes#index",via: :all
+   post '/watson' => 'watson#natural_language_understanding'
+   match "*stuff",to: "homes#index",via: :all
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
