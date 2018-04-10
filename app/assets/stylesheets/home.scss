@@ -2,8 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .profileCard {
-  width: 500px;
-  margin: auto;
+  width: 300px;
+  margin-left: 0.5em;
+  float: left;
 }
 
 .card-content {
@@ -17,4 +18,10 @@
 
 .topNav {
     background-color:darkgreen;
+}
+
+canvas {
+  margin: 5em;
+  width: 50%;
+  height: 50%;
 }
