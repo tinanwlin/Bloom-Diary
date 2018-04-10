@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route,Switch } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import React from "react"
 import PropTypes from "prop-types"
@@ -43,12 +43,14 @@ class App extends React.Component {
   render () {
     return (
         <BrowserRouter>
-          <div>
+        <div>
             <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
-            <Route exact path='/' component={Home} />
-            <Route path='/profile' component={Profile} />
-            <Route path='/user' component={User} />
-            <Route component={NoMatch} />
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/profile' component={Profile} />
+              <Route path='/user' component={User} />
+              <Route component={NoMatch} />
+            </Switch>
             <Footer/>
           </div>
         </BrowserRouter>
