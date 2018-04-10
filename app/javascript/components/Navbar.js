@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import {Navbar,NavItem,Modal,Input,Button} from "react-materialize";
+=======
+import React from "react"
+import PropTypes from "prop-types"
+import styled from "styled-components"
+import { Link,Redirect } from 'react-router-dom'
+import {Navbar,NavItem,Modal,Input,Button} from "react-materialize"
+>>>>>>> feature/home/grid
 
 class NavbarComponent extends React.Component {
   constructor(props){
@@ -27,10 +35,17 @@ class NavbarComponent extends React.Component {
     let $password= $("#loginPassword").val();
     console.log("$Email",$email,"$Password",$password);
     $.post("/sessions",{email:$email,password:$password},(response)=>{
+<<<<<<< HEAD
       console.log("this is response:",response);
+=======
+>>>>>>> feature/home/grid
         if (!response.data){
           alert(response.message)
-        }else{this.props.setUser(response.data.id);
+        }else{
+          $.get('/me',(data)=>{ 
+            console.log("/me:",data);
+            this.props.setUser(data.nickname);
+          });
         $('#loginModal').modal('close');
         }
     });
@@ -42,14 +57,19 @@ class NavbarComponent extends React.Component {
     let $nickname = $("#registerNickname").val();
     let $password = $("#registerPassword").val();
     let $confirmpassword =$("#registerConfirmPassword").val();
-    $.post('/users',{email:$email,nickname:$nickname,password:$password,password_confirmation:$confirmpassword},(err)=>{
-      if (err){
+    $.post('/users',{email:$email,nickname:$nickname,password:$password,password_confirmation:$confirmpassword},(response)=>{
+      //handle error response
+      if (response.errors){
         let errmsg = "";
-        err.errors.forEach((msg)=>{
+        response.errors.forEach((msg)=>{
           errmsg += msg + "\n";
         });
         alert(errmsg);
       }else{
+        $.get('/me', (data) => {
+          console.log("/me:", data);
+          this.props.setUser(data.nickname);
+        });
         $('#registerModal').modal('close');
       }
     })
@@ -60,9 +80,10 @@ class NavbarComponent extends React.Component {
       url:'/sessions',
       type:'DELETE',
       success:()=>{
-        this.props.setUser(null);
-        console.log("session deleted");
-        
+        //Getting current User
+        $.get('/me', (data) => {
+          this.props.setUser(null);
+        });
       }
     })
   }
@@ -102,10 +123,10 @@ class NavbarComponent extends React.Component {
         
           <Navbar brand='logo' right className="topNav">
             <ul>
+              {this.navManagement(this.props.userSession)}
               <li><Link to='/' className="NavItem">Home</Link></li>
               <li><Link to='/journals'>Journals</Link></li>
               <li><Link to='/profile'>Profile</Link></li>
-              {this.navManagement(this.props.userSession)}
             </ul> 
           </Navbar>
 
