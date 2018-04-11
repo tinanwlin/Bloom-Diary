@@ -60,7 +60,7 @@ class WatsonController < ApplicationController
               journal_id = 11
             
               if journal = Journal.check_journal(email, journal_id)
-                puts 'UPDATE JJ'
+                
                 journal.update({
                   content: description,
                   sentiment_score: sentiment_score,
@@ -74,7 +74,7 @@ class WatsonController < ApplicationController
                 })
 
               else
-                puts 'CREATE JJ'
+                
                 Journal.create!({
                   user_id: user_id,
                   content: description,
