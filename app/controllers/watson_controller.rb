@@ -4,8 +4,6 @@ class WatsonController < ApplicationController
 
 
     def natural_language_understanding
-      puts "--------------------"
-      puts @journal
         require 'net/http'
         require 'uri'
         require 'json'
@@ -38,13 +36,12 @@ class WatsonController < ApplicationController
                       }
             req.body = payload.to_json
             
-            req.basic_auth("ac49cf55-8ee6-485e-aed0-956429714dc0", "Rfeif6hCMbLD")
+            req.basic_auth(ENV["LOGIN"], ENV["PASSWORD"])
 
             response = http.request(req)
             puts response
             results = JSON.parse(response.body)
             puts results
-
 
             if !results["code"]
               sadness = results["keywords"][0]["emotion"]["sadness"]
@@ -53,7 +50,6 @@ class WatsonController < ApplicationController
               disgust = results["keywords"][0]["emotion"]["disgust"]
               anger = results["keywords"][0]["emotion"]["anger"]
               sentiment_score = results["keywords"][0]["sentiment"]["score"]
-              description = content
               user_id = @current_user.id
               email = User.find(user_id).email
 
@@ -65,7 +61,7 @@ class WatsonController < ApplicationController
               if journal = Journal.check_journal(email, date)
                 
                 journal.update({
-                  content: description,
+                  content: content,
                   sentiment_score: sentiment_score,
                   joy: joy,
                   anger: anger,
