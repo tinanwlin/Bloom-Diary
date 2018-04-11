@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { Button,Icon } from "react-materialize"
 class CalendarGrid extends React.Component {
   constructor(props){
     super(props);
@@ -19,7 +20,7 @@ class CalendarGrid extends React.Component {
   }
 
 
-  drawWeek=(color)=>{
+  drawWeek=(className)=>{
     const daysInAWeek = 7;
     let daysArray = [];
     for (let dayCount = 1; dayCount < daysInAWeek+1 ; dayCount++){
@@ -27,7 +28,7 @@ class CalendarGrid extends React.Component {
     }
     return daysArray.map((day)=>{
       console.log("day", day);
-      return <li className="day" data-id={day} style={{height:'50px', width:'50px', backgroundColor:color,border:"1px solid white",display:"inline-block"}}></li>
+      return <li className={className} data-id={day}></li>
     });
     //return drawDay;
   }
@@ -40,7 +41,7 @@ class CalendarGrid extends React.Component {
     }
     return weeksArray.map((week)=>{
       // console.log("week",week );
-      return <ul className="week" data-id={week} style={{ margin: "0" }}>{this.drawWeek('black')}</ul>
+      return <ul className="week" data-id={week}>{this.drawWeek('day')}</ul>
     });
     // console.log(drawWeek)
     // return drawWeek;
@@ -55,7 +56,7 @@ class CalendarGrid extends React.Component {
     }
     return weeksArray.map((week) => {
       // console.log("week",week );
-      return <ul className="background" data-id={week} style={{margin:"0"}}>{this.drawWeek('blue')}</ul>
+      return <ul className="canvasWeek" data-id={week}>{this.drawWeek('canvasDay')}</ul>
     });
     // console.log(drawWeek)
     // return drawWeek;
@@ -73,17 +74,27 @@ class CalendarGrid extends React.Component {
     console.log(reminderDaysArray)
     return reminderDaysArray.map((day) => {
       // console.log("week",week );
-      return <li className="day" data-id={day} style={{ height: '50px', width: '50px', color: 'white', backgroundColor: 'black', border: "1px solid white", display: "inline-block" }}></li>
+      return <li className="day" data-id={day}></li>
     });
   }
   render () {
 
     return (
       <React.Fragment>
-        <div className="grid_container">
-          {this.state.year}
-          {this.state.month}
+            <div className="calendarSelection">
+              <div style={{display:"block"}}>
+                <Button waves='light'>Previous<Icon left>chevron_left</Icon></Button>
+              {this.state.year}
+                <Button waves='light'>Next<Icon left>chevron_right</Icon></Button>
+              </div>
+            <div>
+              <Button waves='light'>Previous<Icon left>chevron_left</Icon></Button>
+                {this.state.month}
+              <Button waves='light'>Next<Icon left>chevron_right</Icon></Button>
+            </div>
           {this.state.day}
+        </div>
+        <div className="grid_container">
           <div className="calendar_canvas">
             {this.drawCalendarCanvas()}
           </div>

@@ -38,7 +38,9 @@ class App extends React.Component {
   componentDidMount(){
     $.get('/me', (data) => {
       console.log("/me:", data);
-      this.setState({currentUser:data.nickname});
+      if (data) {
+        this.setState({currentUser:data.nickname});
+      }
     });
   }
 
