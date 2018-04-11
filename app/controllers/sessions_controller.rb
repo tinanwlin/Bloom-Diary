@@ -1,12 +1,9 @@
 class SessionsController < ApplicationController
 
-  # skip_before_action :verify_authenticity_token  
-
 skip_before_action :verify_authenticity_token  
 
 
   def create
-    @user = User.find_by_email(params[:email].downcase)
     if @user = User.authenticate_with_credentials(params[:email], params[:password])
       session[:user_id] = @user.id
       render :json => {
@@ -29,4 +26,5 @@ skip_before_action :verify_authenticity_token
       message: "Successfully Logout!"
     }.to_json
   end
+
 end

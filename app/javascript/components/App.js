@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route,Switch } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import React from "react"
 import PropTypes from "prop-types"
@@ -7,8 +7,14 @@ import Footer from "./Footer"
 import Profile from "./Profile"
 import Home from "./Home"
 import User from "./User"
-import Test from "./Test"
 
+const NoMatch = ({ location }) => (
+  <div>
+    <h3>
+      No match for <code>{location.pathname}</code>
+    </h3>
+  </div>
+);
 
 class App extends React.Component {
 
@@ -27,22 +33,31 @@ class App extends React.Component {
     this.setState({currentUser:sessionData});
   }
 
+  componentDidMount(){
+    $.get('/me', (data) => {
+      console.log("/me:", data);
+      this.setState({currentUser:data.nickname});
+    });
+  }
 
   render () {
     return (
         <BrowserRouter>
-          <div>
-          <div>lalalalala{this.state.currentUser}</div>
-          <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
+        <div>
+            <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
+            <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/profile' component={Profile} />
               <Route path='/user' component={User} />
-              <Route path='/test' component={Test} />
+              <Route component={NoMatch} />
+            </Switch>
             <Footer/>
           </div>
         </BrowserRouter>
     );
   }
 }
+
+
 
 export default App

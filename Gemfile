@@ -34,6 +34,9 @@ gem 'jbuilder', '~> 2.5'
  #gem 'rmagick'
  gem 'faker'
 
+ #strip html text
+ gem 'sanitize', '~> 4.0', '>= 4.0.1'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
