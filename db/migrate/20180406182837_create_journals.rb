@@ -11,6 +11,7 @@ class CreateJournals < ActiveRecord::Migration[5.1]
       t.float :fear
       t.string :location
       t.string :weather
+      t.date :date
 
       t.timestamps
     end

@@ -1,0 +1,17 @@
+.grid_container {
+    position: relative;
+
+    & > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        &.calendar_month {
+            z-index: 1;
+        }
+    }
+
+    ul {
+        height: 50px;
+    }
+}
