@@ -31,7 +31,7 @@ class NavbarComponent extends React.Component {
           alert(response.message)
         }else{
           $.get('/me',(data)=>{ 
-            console.log("/me:",data);
+            console.log("login/me:",data);
             this.props.setUser(data.nickname);
           });
         $('#loginModal').modal('close');
@@ -55,7 +55,7 @@ class NavbarComponent extends React.Component {
         alert(errmsg);
       }else{
         $.get('/me', (data) => {
-          console.log("/me:", data);
+          console.log("register/me:", data);
           this.props.setUser(data.nickname);
         });
         $('#registerModal').modal('close');

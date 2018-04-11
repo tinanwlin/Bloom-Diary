@@ -10,9 +10,9 @@ class WatsonController < ApplicationController
         require 'json'
         require 'sanitize'
 
-        puts "call watson!!"
+        
         content = Sanitize.clean(params['content'])
-        puts content
+        
         begin
         
             uri = URI.parse("https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16")
@@ -36,59 +36,60 @@ class WatsonController < ApplicationController
                         }
                       }
             req.body = payload.to_json
+            
             req.basic_auth("ac49cf55-8ee6-485e-aed0-956429714dc0", "Rfeif6hCMbLD")
 
             response = http.request(req)
+            puts response
             results = JSON.parse(response.body)
+            puts results
 
-            sadness = results["keywords"][0]["emotion"]["sadness"]
-            joy = results["keywords"][0]["emotion"]["joy"]
-            fear = results["keywords"][0]["emotion"]["fear"]
-            disgust = results["keywords"][0]["emotion"]["disgust"]
-            anger = results["keywords"][0]["emotion"]["anger"]
-            sentiment_score = results["keywords"][0]["sentiment"]["score"]
-            description = content
-
-          #  This is hard code. We need to change this.
-            location = "Taipei"
-            user_id = 7
-            weather = "Sunny"
-            email = User.find(user_id).email
-            journal_id = 10
+            if !results["code"]
+              sadness = results["keywords"][0]["emotion"]["sadness"]
+              joy = results["keywords"][0]["emotion"]["joy"]
+              fear = results["keywords"][0]["emotion"]["fear"]
+              disgust = results["keywords"][0]["emotion"]["disgust"]
+              anger = results["keywords"][0]["emotion"]["anger"]
+              sentiment_score = results["keywords"][0]["sentiment"]["score"]
+              description = content
+            #  This is hard code. We need to change this.
+              location = "Taipei"
+              user_id = 7
+              weather = "Sunny"
+              email = User.find(user_id).email
+              journal_id = 11
             
+              if journal = Journal.check_journal(email, journal_id)
+                puts 'UPDATE JJ'
+                journal.update({
+                  content: description,
+                  sentiment_score: sentiment_score,
+                  joy: joy,
+                  anger: anger,
+                  disgust: disgust,
+                  sadness: sadness,
+                  fear: fear,
+                  location: location,
+                  weather: weather,
+                })
 
-            if journal = Journal.check_journal(email, journal_id)
-
-              journal.update({
-                content: description,
-                sentiment_score: sentiment_score,
-                joy: joy,
-                anger: anger,
-                disgust: disgust,
-                sadness: sadness,
-                fear: fear,
-                location: location,
-                weather: weather,
-              })
-              
-              redirect_to '/'
-
-            else
-              Journal.create!({
-                user_id: user_id,
-                content: description,
-                sentiment_score: sentiment_score,
-                joy: joy,
-                anger: anger,
-                disgust: disgust,
-                sadness: sadness,
-                fear: fear,
-                location: location,
-                weather: weather,
-              })
-              redirect_to '/'
-
+              else
+                puts 'CREATE JJ'
+                Journal.create!({
+                  user_id: user_id,
+                  content: description,
+                  sentiment_score: sentiment_score,
+                  joy: joy,
+                  anger: anger,
+                  disgust: disgust,
+                  sadness: sadness,
+                  fear: fear,
+                  location: location,
+                  weather: weather,
+                })
+              end
             end
+            render :json => results.to_json
         end
     end
 end

@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { Modal, Input, Button } from "react-materialize"
 import CKEditor from "react-ckeditor-component"
 
+let CK;
 class Journal extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,7 @@ class Journal extends React.Component {
   }
 
   onChange(evt) {
+    CK = evt;
     console.log("onChange fired with event info: ", evt);
     var newContent = evt.editor.getData();
     console.log(newContent)
@@ -27,16 +29,14 @@ class Journal extends React.Component {
   handleJournalSubmit(event) {
     console.log("click journal submit!");
     let $journalContent = this.state.content;
-    var cookieObj = (document.cookie).split(', ');
-    var result = {};
-    for (var i = 0; i < cookieObj.length; i++) {
-      var temp = cookieObj[i].split('=');
-      result[temp[0]] = temp[1];
-    }
-    var newResult = JSON.parse(result.user)
-    console.log("content:", $journalContent, "cookie:", newResult.id);
     $.post("/watson", { content: $journalContent }, (response) => {
       console.log("response:", response);
+      if (!response.error){
+        $('#journalModal').modal('close');
+        CK.editor.setData('');
+      } else {
+        alert(response.error)
+      }
     })
   }
 
@@ -62,8 +62,6 @@ class Journal extends React.Component {
     );
   }
 }
-
-
 
 
 export default Journal
