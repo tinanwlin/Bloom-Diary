@@ -1,13 +1,44 @@
 .grid_container {
     position: relative;
+    display: block;
 
     & > div {
         position: absolute;
         top: 0;
         left: 0;
 
+        &.calendar_canvas{
+            
+            .canvasDay{
+                height: 50px;
+                width: 50px;
+                color: white;
+                background-color:blue;
+                border: 1px solid white;
+                display: inline-block;
+            }
+            
+            .canvasWeek{
+                margin: 0;
+            }
+
+        }
+
         &.calendar_month {
             z-index: 1;
+
+            .day{
+                height: 50px;
+                width: 50px;
+                color: white;
+                background-color:black;
+                border: 1px solid white;
+                display: inline-block;
+            }
+
+            .week{
+                margin:0;
+            }
         }
     }
 
