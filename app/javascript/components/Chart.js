@@ -6,7 +6,7 @@ class MyComponent extends Component {
   render() {
     return (
     <RadarChart data={{
-      labels : ['joy', 'anger', 'disgust', 'sadness', 'fear'],
+      labels: ['joy', 'anger', 'disgust', 'sadness', 'fear'],
       datasets: [
         {
           label: "Yesterday",
@@ -32,9 +32,11 @@ class MyComponent extends Component {
     }}
     height={600}
     width={700}
+    redraw
     />
     )
   }
+  
 }
 
 export default MyComponent;
