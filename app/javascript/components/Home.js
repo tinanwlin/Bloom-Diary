@@ -22,8 +22,8 @@ class Home extends React.Component {
       //This will be where we add the Grid for the flowers
       <React.Fragment>
         <h1>This is the homepage</h1>
-        <Grid onClick={this.getXandY()}/>
         <Journal/>
+        <Grid onClick={this.getXandY()}/>
       </React.Fragment>
     );
   }

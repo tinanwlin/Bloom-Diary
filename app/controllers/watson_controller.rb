@@ -3,8 +3,9 @@ class WatsonController < ApplicationController
     
 
 
-    def natural_language_understanding 
-
+    def natural_language_understanding
+      puts "--------------------"
+      puts @journal
         require 'net/http'
         require 'uri'
         require 'json'
@@ -44,6 +45,7 @@ class WatsonController < ApplicationController
             results = JSON.parse(response.body)
             puts results
 
+
             if !results["code"]
               sadness = results["keywords"][0]["emotion"]["sadness"]
               joy = results["keywords"][0]["emotion"]["joy"]
@@ -52,14 +54,15 @@ class WatsonController < ApplicationController
               anger = results["keywords"][0]["emotion"]["anger"]
               sentiment_score = results["keywords"][0]["sentiment"]["score"]
               description = content
-            #  This is hard code. We need to change this.
-              location = "Taipei"
-              user_id = 7
-              weather = "Sunny"
+              user_id = @current_user.id
               email = User.find(user_id).email
-              journal_id = 11
+
+              # This is hard code. We need to change this.
+              location = "Vanraining"
+              weather = "Sunny"
+              date = Date.new(2018, 4, 6)
             
-              if journal = Journal.check_journal(email, journal_id)
+              if journal = Journal.check_journal(email, date)
                 
                 journal.update({
                   content: description,
@@ -86,8 +89,11 @@ class WatsonController < ApplicationController
                   fear: fear,
                   location: location,
                   weather: weather,
+                  date: date,
                 })
               end
+
+           
             end
             render :json => results.to_json
         end

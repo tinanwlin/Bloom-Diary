@@ -29,6 +29,7 @@ class Journal extends React.Component {
   handleJournalSubmit(event) {
     console.log("click journal submit!");
     let $journalContent = this.state.content;
+
     $.post("/watson", { content: $journalContent }, (response) => {
       console.log("response:", response);
       if (!response.error){

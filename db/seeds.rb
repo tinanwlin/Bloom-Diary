@@ -73,6 +73,7 @@ Journal.create!({
   fear: 0.193544,
   location: "Vancouver",
   weather: "Sunny",
+  date: Date.new(2018, 4, 6),
   created_at: 1.days.ago, 
   updated_at: 1.days.ago
 })
@@ -88,6 +89,7 @@ Journal.create!({
   fear: 0.107102,
   location: "Vancouver",
   weather: "Raining",
+  date: Date.new(2018, 4, 8),
   created_at: 2.days.ago, 
   updated_at: 2.days.ago
 })
@@ -104,6 +106,7 @@ Journal.create!({
   fear: 0.566535,
   location: "Paris",
   weather: "Cloudy",
+  date: Date.new(2018, 4, 9),
   created_at: 2.days.ago, 
   updated_at: 2.days.ago
 })
@@ -119,6 +122,7 @@ Journal.create!({
   fear: 0.074198,
   location: "Toronto",
   weather: "Cloudy",
+  date: Date.new(2018, 4, 9),
   created_at: 3.days.ago, 
   updated_at: 3.days.ago
 })
