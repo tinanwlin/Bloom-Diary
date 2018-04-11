@@ -6,63 +6,59 @@ import CKEditor from "react-ckeditor-component"
 
 class Journal extends React.Component {
   constructor(props) {
-        super(props);
-        this.updateContent = this.updateContent.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.state = {
-            content: 'content',
-        }
+    super(props);
+    this.state = {
+      content: '',
     }
+    this.onChange = this.onChange.bind(this);
+    this.handleJournalSubmit = this.handleJournalSubmit.bind(this);
+  }
 
-    updateContent(newContent) {
-        this.setState({
-            content: newContent
-        })
-    }
+  onChange(evt) {
+    console.log("onChange fired with event info: ", evt);
+    var newContent = evt.editor.getData();
+    console.log(newContent)
+    this.setState({
+      content: newContent
+    })
+  }
 
-    onChange(evt){
-      console.log("onChange fired with event info: ", evt);
-      var newContent = evt.editor.getData();
-      console.log(newContent)
-      this.setState({
-        content: newContent
-      })
-    }
 
-    onBlur(evt){
-      console.log("onBlur event called with event info: ", evt);
-      
-    }
+  handleJournalSubmit(event) {
+    console.log("click journal submit!");
+    let $journalContent = this.state.content;
+    // var cookieObj = (document.cookie).split(', ');
+    // var result = {};
+    // for (var i = 0; i < cookieObj.length; i++) {
+    //   var temp = cookieObj[i].split('=');
+    //   result[temp[0]] = temp[1];
+    // }
+    // var newResult = JSON.parse(result.user)
+    // console.log("content:", $journalContent, "cookie:", newResult.id);
+    $.post("/watson", { content: $journalContent }, (response) => {
+      console.log("response:", response);
+    })
+  }
 
-    afterPaste(evt){
-      console.log("afterPaste event called with event info: ", evt);
-    }
-  
+
   render() {
-
     return (
       <React.Fragment>
-
         <Button onClick={() => { $('#journalModal').modal('open') }}>Journal</Button>
-
         <Modal
           header='Journal'
           id="journalModal">
-          <Input id="journalInput" type="textarea" label="Text" s={30} />
-          <Button waves='light'>Create Journal</Button>
+          <CKEditor
+            activeClass="p10"
+            content={this.state.content}
+            events={{
+              "change": this.onChange
+            }} />
+            
+          <button onClick={this.handleJournalSubmit}>Create Journal</button> 
         </Modal>
-
-      <CKEditor 
-        activeClass="p10" 
-        content={this.state.content} 
-        events={{
-          "blur": this.onBlur,
-          "afterPaste": this.afterPaste,
-          "change": this.onChange
-        }}/>
-
+        
       </React.Fragment>
-
     );
   }
 }
