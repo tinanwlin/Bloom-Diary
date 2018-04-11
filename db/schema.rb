@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20180406182837) do
     t.float "fear"
     t.string "location"
     t.string "weather"
+    t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
