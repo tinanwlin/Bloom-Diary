@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .profileCard {
-  width: 300px;
+  width: 200px;
   margin-left: 0.5em;
   float: left;
 }
@@ -20,8 +20,12 @@
     background-color:darkgreen;
 }
 
+.brand-logo {
+  margin-left: 0.5em;
+}
+
 canvas {
-  margin: 5em;
+  margin: 2em;
   width: 50%;
   height: 50%;
 }
