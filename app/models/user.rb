@@ -5,10 +5,12 @@ class User < ActiveRecord::Base
 
     has_secure_password
 
-    validates :nickname, :email, :password, :password_confirmation, presence: true
+    validates :nickname, :email, presence: true
     validates :email, uniqueness: { case_sensitive: false }
-    validates :password, length: { minimum: 4 }
-    
+    validates :password, length: { minimum: 4 }, on: :create, presence: true
+    validates :password_confirmation, length: { minimum: 4 }, on: :create, presence: true
+
+
     def self.authenticate_with_credentials email, password
       email.strip!
       email.downcase!
