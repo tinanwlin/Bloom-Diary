@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  skip_before_action :verify_authenticity_token  
-
   def me
     render :json => @current_user
   end
@@ -16,6 +14,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def update
     @user = User.find(params[:id])
     if @user.update(update_params)
@@ -29,6 +28,7 @@ class UsersController < ApplicationController
   end
 
 private 
+
 
   def user_params
     params.permit(:nickname, :email, :password, :password_confirmation)
