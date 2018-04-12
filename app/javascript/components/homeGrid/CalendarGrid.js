@@ -14,6 +14,7 @@ class CalendarGrid extends React.Component {
       day:day
     }
   }
+  
   changeYear = (direction) => {
     this.setState({
       year: this.state.year + direction 
@@ -50,9 +51,10 @@ class CalendarGrid extends React.Component {
       daysArray.push(dayCount); 
     }
     return daysArray.map((day)=>{
-      return <li className={className} data-id={day} onClick={()=>{console.log(`year: ${this.state.year} month: ${this.state.month} day:${(weekNumber-1)*7+day}`)}}></li>
+      return <li key={day} className={className} data-id={day} onClick={()=>{console.log(`year: ${this.state.year} month: ${this.state.month} day:${(weekNumber-1)*7+day}`)}}>Flower2</li>
     });
   }
+
   drawMonth=()=>{
     let days = this.daysInMonth(this.state.month, this.state.year);
     let weeks = Math.floor(days/7);
@@ -61,7 +63,7 @@ class CalendarGrid extends React.Component {
       weeksArray.push(weekCount);      
     }
     return weeksArray.map((week)=>{
-      return <ul className="week" data-id={week}>{this.drawWeek('day',week)}</ul>
+      return <ul key={week} className="week" data-id={week}>{this.drawWeek('day',week)}</ul>
     });
   }
 
@@ -73,7 +75,7 @@ class CalendarGrid extends React.Component {
       weeksArray.push(weekCount);
     }
     return weeksArray.map((week) => {
-      return <ul className="canvasWeek" data-id={week}>{this.drawWeek('canvasDay')}</ul>
+      return <ul key={week} className="canvasWeek" data-id={week}>{this.drawWeek('canvasDay')}</ul>
     });
   }
 
@@ -85,7 +87,7 @@ class CalendarGrid extends React.Component {
       reminderDaysArray.push(reminderCount);
     }
     return reminderDaysArray.map((day) => {
-      return <li className="day" data-id={day} onClick={() => { console.log(`year: ${this.state.year} month: ${this.state.month} day:${28 + day}`)}}></li>
+      return <li key={day} className="day" data-id={day} onClick={() => { console.log(`year: ${this.state.year} month: ${this.state.month} day:${28 + day}`)}}>Flower</li>
     });
   }
   render () {
@@ -93,17 +95,18 @@ class CalendarGrid extends React.Component {
     return (
       <React.Fragment>
             <div className="calendarSelection">
+            Year
               <div style={{display:"block"}}>
             <Button waves='light' onClick={()=>this.changeYear(-1)}>Previous<Icon left>chevron_left</Icon></Button>
               {this.state.year}
             <Button waves='light' onClick={()=>this.changeYear(+1)}>Next<Icon left>chevron_right</Icon></Button>
               </div>
             <div>
+              Month
             <Button waves='light' onClick={()=>this.changeMonth(-1)}>Previous<Icon left>chevron_left</Icon></Button>
                 {this.state.month}
             <Button waves='light' onClick={() => this.changeMonth(+1)}>Next<Icon left>chevron_right</Icon></Button>
             </div>
-          {this.state.day}
         </div>
         <div className="grid_container">
           <div className="calendar_canvas">
