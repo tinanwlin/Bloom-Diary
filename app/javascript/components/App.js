@@ -7,6 +7,8 @@ import Footer from "./Footer"
 import Profile from "./Profile"
 import Home from "./Home"
 import User from "./User"
+import JournalsList from './JournalsList'
+import Journal from './Journal';
 
 const NoMatch = ({ location }) => (
   <div>
@@ -51,6 +53,7 @@ class App extends React.Component {
               <Route exact path='/' component={Home} />
               <Route path='/profile' component={Profile} />
               <Route path='/user' component={User} />
+              <Route path='/journals' component={JournalsList} />
               <Route component={NoMatch} />
             </Switch>
             <Footer/>
