@@ -5,15 +5,12 @@ import Journal from "./Journal"
 
 class Home extends React.Component {
 
-
   getXandY = () => {
-    $(document).on('click', '.field', function (e) {
+    $(document).on('click', '.day', (e) => {
       let target = $(e.currentTarget),
-        x = target.parents('.row').attr('data-id'),
+        x = target.parents('.week').attr('data-id'),
         y = target.attr('data-id');
-      //x = target.parents('.row').prevAll().length,
-      //y = target.prevAll().length;
-      console.log(`x:${x} and y:${y}`)
+      console.log(`x:${x} and y:${y}`);
     });
   }
 
@@ -23,7 +20,16 @@ class Home extends React.Component {
       <React.Fragment>
         <h1>This is the homepage</h1>
         <Journal/>
+        <div className="container" style={{ display: "block" }}>
+          <h3>this is the index page in the home controller</h3>
+          <form method="post" action="/watson">
+            <input type="submit" text="submit" value="submit" />
+          </form>
+
+        </div>
         <Grid onClick={this.getXandY()}/>
+         {/* Simulation to test Watson API */}
+         
       </React.Fragment>
     );
   }
