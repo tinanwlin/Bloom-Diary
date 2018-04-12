@@ -56,7 +56,7 @@ class App extends React.Component {
         <div>
             <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
             <Switch>
-              <Route exact path='/' component={Home} />
+            <Route exact path='/' render={(props) => (<Home {...props} userSession={this.state.currentUser}/>)}/>
               <Route path='/profile' render={(props) => (
                 <Profile {...props} updateUserNickname={this.updateUserNickname}/>
               )}/>
