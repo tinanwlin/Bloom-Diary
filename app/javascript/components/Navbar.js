@@ -102,8 +102,8 @@ class NavbarComponent extends React.Component {
         </React.Fragment>
       );
     }
-
   }
+
 
 
   render () {
