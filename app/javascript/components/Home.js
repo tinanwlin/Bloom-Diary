@@ -5,17 +5,40 @@ import Journal from "./Journal"
 
 class Home extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      year:0,
+      month:0,
+      day:0
+    }
+  }
 
   getXandY = () => {
-    $(document).on('click', '.field', function (e) {
+    $(document).on('click', '.day', (e) => {
       let target = $(e.currentTarget),
-        x = target.parents('.row').attr('data-id'),
+        x = target.parents('.week').attr('data-id'),
         y = target.attr('data-id');
-      //x = target.parents('.row').prevAll().length,
-      //y = target.prevAll().length;
-      console.log(`x:${x} and y:${y}`)
+      console.log(`x:${x} and y:${y}`);
+      //let dateNumber = (x-1)*7 + Number(y);
+      //this.setState({day:dateNumber})
     });
   }
+
+  componentDidMount(){
+    // let date = new Date();
+    // this.setState({
+    //   year: date.getFullYear(),
+    //   month: date.getMonth() + 1
+    // })
+  }
+
+  // getDate = (year, month) => {
+  //   this.setState({
+  //     year:year,
+  //     month:month
+  //   })
+  // }
 
   render () {
     return (
@@ -31,8 +54,6 @@ class Home extends React.Component {
         <form method="post" action="/watson">
         <input type="submit" text="submit" value="submit" />
         </form>
-
-
       </React.Fragment>
     );
   }
