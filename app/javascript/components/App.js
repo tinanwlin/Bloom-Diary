@@ -30,6 +30,7 @@ class App extends React.Component {
     }
 
     this.setCurrentUser = this.setCurrentUser.bind(this);
+    this.updateUserNickname = this.updateUserNickname.bind(this);
   }
 
   setCurrentUser(sessionData){
@@ -45,6 +46,10 @@ class App extends React.Component {
     });
   }
 
+  updateUserNickname(newNickname){
+    this.setState({currentUser: newNickname});
+  }
+
   render () {
     return (
         <BrowserRouter>
@@ -52,7 +57,9 @@ class App extends React.Component {
             <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
             <Switch>
               <Route exact path='/' component={Home} />
-              <Route path='/profile' component={Profile} />
+              <Route path='/profile' render={(props) => (
+                <Profile {...props} updateUserNickname={this.updateUserNickname}/>
+              )}/>
               <Route path='/user' component={User} />
               <Route path='/journals' render={(routeProps) => (
                 <JournalsList {...routeProps} currentUserId={this.state.currentUserId}/>

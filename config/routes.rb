@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
   #namespace :api do
-  resources :users, only: [:create] do
+  resources :users, only: [:create, :update] do
     resources :journals, only: [:index, :create, :show]
   end
   

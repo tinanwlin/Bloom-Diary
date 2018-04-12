@@ -76,12 +76,13 @@ class NavbarComponent extends React.Component {
     })
   }
 
+
   navManagement(sessionState){
     if (sessionState){
       return(
         <React.Fragment>
-          <NavItem onClick={this.handleUserLogout}>Logout</NavItem>
           <NavItem>Welcome {this.props.userSession}</NavItem>
+          <NavItem onClick={this.handleUserLogout}>Logout</NavItem>
         </React.Fragment>
       );
     }else{
@@ -102,29 +103,21 @@ class NavbarComponent extends React.Component {
         </React.Fragment>
       );
     }
-
   }
 
 
+
   render () {
-    //  const Nav = styled.nav`
-    //   margin: 0;
-    //   padding: 0;
-    //   font-size: 1.5em;
-    //   text-align: center;
-    //   color: palevioletred;
-    //   background-color: black;
-    // `;
 
     return (
       <React.Fragment>
         
           <Navbar brand='logo' right className="topNav">
             <ul>
-              {this.navManagement(this.props.userSession)}
               <li><Link to='/' className="NavItem">Home</Link></li>
               <li><Link to='/journals'>Journals</Link></li>
               <li><Link to='/profile'>Profile</Link></li>
+              {this.navManagement(this.props.userSession)}
             </ul> 
           </Navbar>
 
