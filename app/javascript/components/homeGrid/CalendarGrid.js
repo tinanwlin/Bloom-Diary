@@ -65,7 +65,6 @@ class CalendarGrid extends React.Component {
     }
     return daysArray.map((day)=>{
       let dateNumber = (weekNumber-1)*7+day;
-      console.log("dateNumber: ",dateNumber,"weekNumber: ",weekNumber,"day: ",day);
       return <li key={day} className={className} data-id={day} data-datenumber={dateNumber} onClick={()=>{console.log(`year: ${this.state.year} month: ${this.state.month} day:${(weekNumber-1)*7+day}`)}}>
         {(className==="day")?<Journal/>:""}
       </li>
