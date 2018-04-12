@@ -28,28 +28,23 @@ class Profile extends Component {
     });
   }
 
-  updateUser= (name, value) => {
-
+  updateUser = (name, value) => {
     const { user } = this.state;
-
     user[name] = value;
-
     this.setState({ user });
   }
 
-  submitUser=(event) => {
+  submitUser = (event) => {
     const { user } = this.state;
-
     $.ajax({
       url: `/users/${user.id}`,
-      method: 'PUT'
+      method: 'PUT',
+      data: user
     })
-    .then(user => {
-      console.log('UPDATED USER: ', user)
+    .done(res => {
+      this.props.updateUserNickname(res.data.nickname);
+      console.log('UPDATED USER: ', res)
     })
-    .catch(err => console.log(err));
-
-    props.newUserInfo(this.state.nickname, this.state.email);
   }
 
   render() {

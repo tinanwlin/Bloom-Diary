@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  # skip_before_action :verify_authenticity_token  
+
   def me
     render :json => @current_user
   end
@@ -17,7 +19,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(update_params)
+    if @user
+      @user.update(update_params)
       session[:user_id] = @user.id
       render :json => {
         status: 200,
@@ -26,6 +29,7 @@ class UsersController < ApplicationController
       }.to_json
     end 
   end
+
 
 private 
 
