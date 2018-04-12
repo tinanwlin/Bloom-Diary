@@ -45,7 +45,7 @@ class Journal extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Button onClick={() => { $('#journalModal').modal('open') }}>Journal</Button>
+        <Button id="createJournalButton" onClick={() => { $('#journalModal').modal('open') }}>C</Button>
         <Modal
           header='Journal'
           id="journalModal">

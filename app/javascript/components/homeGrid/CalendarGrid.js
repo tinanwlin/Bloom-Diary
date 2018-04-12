@@ -1,20 +1,27 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Button,Icon } from "react-materialize"
+import Journal from "../Journal"
+
+let  x;
 class CalendarGrid extends React.Component {
+
+
   constructor(props){
     super(props);
     let date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
+    let yyyy = date.getFullYear();
+    let mm = date.getMonth() + 1;
+    let dd = date.getDate();
+
     this.state = {
-      year:year,
-      month:month,
-      day:day
+      year:yyyy,
+      month:mm,
+      day:dd,
+      today: mm + "/" + dd + "/" + yyyy
     }
   }
-  
+
   changeYear = (direction) => {
     this.setState({
       year: this.state.year + direction 
@@ -42,16 +49,26 @@ class CalendarGrid extends React.Component {
   daysInMonth(month,year) {
     return new Date(year,month,0).getDate();
   }
-
+  
+  componentWillMount(){
+    let date = new Date();
+    let currentDay = date.getDate();
+    let weekValue = Math.floor(currentDay/7) + 1;
+    let dayValue = currentDay%7;
+  }
 
   drawWeek=(className,weekNumber)=>{
     const daysInAWeek = 7;
     let daysArray = [];
-    for (let dayCount = 1; dayCount < daysInAWeek+1 ; dayCount++){
-      daysArray.push(dayCount); 
+    for (let dayNumber = 1; dayNumber < daysInAWeek+1 ; dayNumber++){
+      daysArray.push(dayNumber); 
     }
     return daysArray.map((day)=>{
-      return <li key={day} className={className} data-id={day} onClick={()=>{console.log(`year: ${this.state.year} month: ${this.state.month} day:${(weekNumber-1)*7+day}`)}}>Flower2</li>
+      let dateNumber = (weekNumber-1)*7+day;
+      console.log("dateNumber: ",dateNumber,"weekNumber: ",weekNumber,"day: ",day);
+      return <li key={day} className={className} data-id={day} data-datenumber={dateNumber} onClick={()=>{console.log(`year: ${this.state.year} month: ${this.state.month} day:${(weekNumber-1)*7+day}`)}}>
+        {(className==="day")?<Journal/>:""}
+      </li>
     });
   }
 
@@ -59,8 +76,8 @@ class CalendarGrid extends React.Component {
     let days = this.daysInMonth(this.state.month, this.state.year);
     let weeks = Math.floor(days/7);
     let weeksArray = [];
-    for (let weekCount = 1; weekCount < weeks+1; weekCount++) {
-      weeksArray.push(weekCount);      
+    for (let weekNumber = 1; weekNumber < weeks+1; weekNumber++) {
+      weeksArray.push(weekNumber);      
     }
     return weeksArray.map((week)=>{
       return <ul key={week} className="week" data-id={week}>{this.drawWeek('day',week)}</ul>
@@ -71,11 +88,11 @@ class CalendarGrid extends React.Component {
     let days = this.daysInMonth(this.state.month, this.state.year);
     let weeks = Math.ceil(days / 7);
     let weeksArray = [];
-    for (let weekCount = 1; weekCount < weeks + 1; weekCount++) {
-      weeksArray.push(weekCount);
+    for (let weekNumber = 1; weekNumber < weeks + 1; weekNumber++) {
+      weeksArray.push(weekNumber);
     }
     return weeksArray.map((week) => {
-      return <ul key={week} className="canvasWeek" data-id={week}>{this.drawWeek('canvasDay')}</ul>
+      return <ul key={week} className="canvasWeek" data-id={week}>{this.drawWeek('canvasDay',week)}</ul>
     });
   }
 
@@ -87,7 +104,9 @@ class CalendarGrid extends React.Component {
       reminderDaysArray.push(reminderCount);
     }
     return reminderDaysArray.map((day) => {
-      return <li key={day} className="day" data-id={day} onClick={() => { console.log(`year: ${this.state.year} month: ${this.state.month} day:${28 + day}`)}}>Flower</li>
+      return <li key={day} className="day" data-id={day} data-number={28+day} onClick={() => { console.log(`year: ${this.state.year} month: ${this.state.month} day:${28 + day}`)}}>
+        <Journal/>
+      </li>
     });
   }
   render () {
