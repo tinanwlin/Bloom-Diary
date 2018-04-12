@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :current_user
   protect_from_forgery prepend: true, with: :exception
 
+  skip_before_action :verify_authenticity_token  
+
   private
   
   def current_user
