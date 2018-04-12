@@ -18,7 +18,6 @@ class CalendarGrid extends React.Component {
     this.setState({
       year: this.state.year + direction 
     });
-    //this.props.getDate(this.state.year,this.state.month+1);
   }
 
   changeMonth = (direction) => {
@@ -27,18 +26,15 @@ class CalendarGrid extends React.Component {
         month: 1,
         year: this.state.year + 1
       });
-      //this.props.getDate(this.state.year, this.state.month+1);
     } else if(this.state.month + direction < 1){
       this.setState({
         month: 12,
         year: this.state.year - 1
       });
-      //this.props.getDate(this.state.year, this.state.month+1);
     } else {
       this.setState({
         month: this.state.month + direction
       });
-      //this.props.getDate(this.state.year, this.state.month+1);
     }
   }
 
