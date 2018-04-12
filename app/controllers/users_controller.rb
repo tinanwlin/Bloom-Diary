@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  skip_before_action :verify_authenticity_token  
-
   def me
     render :json => @current_user
   end
@@ -15,6 +13,7 @@ class UsersController < ApplicationController
       render :json => { :errors => @user.errors.full_messages }
     end
   end
+
 
   def user_params
     params.permit(:nickname, :email, :password, :password_confirmation)

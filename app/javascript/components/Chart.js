@@ -3,6 +3,12 @@ var RadarChart = require("react-chartjs").Radar;
 
 
 class MyComponent extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    const { date } = this.props;
+    return nextProps.data !== date;
+  }
+
   render() {
     return (
     <RadarChart data={{
