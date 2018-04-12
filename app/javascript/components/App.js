@@ -7,6 +7,8 @@ import Footer from "./Footer"
 import Profile from "./Profile"
 import Home from "./Home"
 import User from "./User"
+import JournalsList from './JournalsList'
+import Journal from './Journal';
 
 const NoMatch = ({ location }) => (
   <div>
@@ -36,7 +38,9 @@ class App extends React.Component {
   componentDidMount(){
     $.get('/me', (data) => {
       console.log("/me:", data);
-      this.setState({currentUser:data.nickname});
+      if (data) {
+        this.setState({currentUser:data.nickname});
+      }
     });
   }
 
@@ -49,6 +53,7 @@ class App extends React.Component {
               <Route exact path='/' component={Home} />
               <Route path='/profile' component={Profile} />
               <Route path='/user' component={User} />
+              <Route path='/journals' component={JournalsList} />
               <Route component={NoMatch} />
             </Switch>
             <Footer/>
