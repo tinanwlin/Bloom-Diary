@@ -56,7 +56,7 @@ class WatsonController < ApplicationController
               # This is hard code. We need to change this.
               location = "Vanraining"
               weather = "Sunny"
-              date = Date.new(2018, 4, 6)
+              date = Date.new(2018, 3, 7)
             
               if journal = Journal.check_journal(email, date)
                 
@@ -76,7 +76,7 @@ class WatsonController < ApplicationController
                 
                 Journal.create!({
                   user_id: user_id,
-                  content: description,
+                  content: content,
                   sentiment_score: sentiment_score,
                   joy: joy,
                   anger: anger,
