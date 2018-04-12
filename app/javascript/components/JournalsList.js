@@ -6,14 +6,14 @@ class JournalsList extends React.Component {
     super(props);
 
     this.state = {
-      listOfJornal: []
+      listOfJournal: []
     }
   }
 
   componentDidMount(){
     $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
       if (data) {
-       this.setState({listOfJornal: data}); 
+       this.setState({listOfJournal: data}); 
       }
     });
   }
@@ -25,14 +25,14 @@ class JournalsList extends React.Component {
         <h1 className="journals-header">
           REFLECTIONS
         </h1>
-        {this.state.listOfJornal.map(jornal =>
-          <div className="journals-container">
+        {this.state.listOfJournal.map(journal =>
+          <div key={journal.id} className="journals-container">
             <div className="journal">
-              <h5 className="journal-header individual-journal">
-                {jornal.date}
+              <h5  className="journal-header individual-journal">
+                {journal.date}
               </h5>
               <p className="journal-content">
-                {jornal.content}
+                {journal.content}
               </p>
             </div>
           </div>
