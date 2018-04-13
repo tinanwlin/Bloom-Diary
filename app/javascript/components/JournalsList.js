@@ -31,9 +31,7 @@ class JournalsList extends React.Component {
               <h5  className="journal-header individual-journal">
                 {journal.date}
               </h5>
-              <p className="journal-content">
-                {journal.content}
-              </p>
+                <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
             </div>
           </div>
         )};
