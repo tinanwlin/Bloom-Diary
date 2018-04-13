@@ -49,25 +49,24 @@ class CalendarGrid extends React.Component {
   daysInMonth(month,year) {
     return new Date(year,month,0).getDate();
   }
-  
-  componentWillMount(){
-    let date = new Date();
-    let currentDay = date.getDate();
-    let weekValue = Math.floor(currentDay/7) + 1;
-    let dayValue = currentDay%7;
-  }
 
   drawWeek=(className,weekNumber)=>{
-    const daysInAWeek = 7;
-    let daysArray = [];
-    for (let dayNumber = 1; dayNumber < daysInAWeek+1 ; dayNumber++){
-      daysArray.push(dayNumber); 
-    }
+    let daysArray = [1, 2, 3, 4, 5, 6, 7];
     return daysArray.map((day)=>{
       let dateNumber = (weekNumber-1)*7+day;
-      console.log("dateNumber: ",dateNumber,"weekNumber: ",weekNumber,"day: ",day);
-      return <li key={day} className={className} data-id={day} data-datenumber={dateNumber} onClick={()=>{console.log(`year: ${this.state.year} month: ${this.state.month} day:${(weekNumber-1)*7+day}`)}}>
-        {(className==="day")?<Journal/>:""}
+      return <li key={day}
+        className={className} 
+        data-id={day}
+        data-datenumber={dateNumber}>
+        {(className === "day") ? 
+          <Journal 
+            dateObject={{
+              year:this.state.year,
+              month:this.state.month,
+              day:dateNumber}}
+          /> :
+          ""
+        }
       </li>
     });
   }
@@ -104,8 +103,14 @@ class CalendarGrid extends React.Component {
       reminderDaysArray.push(reminderCount);
     }
     return reminderDaysArray.map((day) => {
-      return <li key={day} className="day" data-id={day} data-number={28+day} onClick={() => { console.log(`year: ${this.state.year} month: ${this.state.month} day:${28 + day}`)}}>
-        <Journal/>
+      return <li key={day} className="day" data-id={day} data-number={28+day}>
+        <Journal
+          dateObject={{
+            year: this.state.year,
+            month: this.state.month,
+            day: 28+day
+          }}
+        />
       </li>
     });
   }
