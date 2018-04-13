@@ -28,8 +28,6 @@ constructor(props){
         </div>
         <h1>{this.props.userSession}</h1>
         {(this.props.userSession!==null)?<Grid onClick={this.getXandY()}/>: ""}
-         {/* Simulation to test Watson API */}
-         
       </React.Fragment>
     );
   }

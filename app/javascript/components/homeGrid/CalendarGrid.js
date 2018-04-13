@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import { Button,Icon } from "react-materialize"
 import Journal from "../Journal"
 
-let  x;
 class CalendarGrid extends React.Component {
 
 
@@ -23,19 +22,32 @@ class CalendarGrid extends React.Component {
     }
   }
 
-  componentDidMount(){
+  //Moving get server response to a separate function it can be easily in other functions
+  getData=()=>{
     $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
       if (data) {
-       this.setState({listOfJournal: data});
-       console.log('wwwwwww', data)
+        let currentMonthJournals = data.filter((journal) => {
+          let year = Number(journal.date.slice(0, 4));
+          let month = Number(journal.date.slice(5, 7));
+          if (this.state.year === year && this.state.month === month) {
+            return journal;
+          }
+        });
+        this.setState({ listOfJournal: currentMonthJournals });
+        console.log(this.state.listOfJournal);
       }
     });
+  }
+
+  componentDidMount(){
+    this.getData();
   }
 
   changeYear = (direction) => {
     this.setState({
       year: this.state.year + direction 
     });
+    this.getData();
   }
 
   changeMonth = (direction) => {
@@ -44,15 +56,18 @@ class CalendarGrid extends React.Component {
         month: 1,
         year: this.state.year + 1
       });
+      this.getData();
     } else if(this.state.month + direction < 1){
       this.setState({
         month: 12,
         year: this.state.year - 1
       });
+      this.getData();
     } else {
       this.setState({
         month: this.state.month + direction
       });
+      this.getData();
     }
   }
 
@@ -74,7 +89,7 @@ class CalendarGrid extends React.Component {
               year:this.state.year,
               month:this.state.month,
               day:dateNumber
-            }}
+            }} journalData={this.state.listOfJournal}
           /> :
           ""
         }

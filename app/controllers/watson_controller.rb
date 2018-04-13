@@ -11,6 +11,7 @@ class WatsonController < ApplicationController
 
         
         content = Sanitize.clean(params['content'])
+        all_content = (params['content'])
         day = params['day'].to_i
         month = params['month'].to_i
         year = params['year'].to_i
@@ -65,7 +66,7 @@ class WatsonController < ApplicationController
               if journal = Journal.check_journal(email, date)
                 
                 journal.update({
-                  content: content,
+                  content: all_content,
                   sentiment_score: sentiment_score,
                   joy: joy,
                   anger: anger,
@@ -80,7 +81,7 @@ class WatsonController < ApplicationController
                 
                 Journal.create!({
                   user_id: user_id,
-                  content: content,
+                  content: all_content,
                   sentiment_score: sentiment_score,
                   joy: joy,
                   anger: anger,
