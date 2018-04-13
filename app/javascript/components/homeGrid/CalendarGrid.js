@@ -18,8 +18,18 @@ class CalendarGrid extends React.Component {
       year:yyyy,
       month:mm,
       day:dd,
-      today: mm + "/" + dd + "/" + yyyy
+      today: mm + "/" + dd + "/" + yyyy,
+      listOfJournal: []
     }
+  }
+
+  componentDidMount(){
+    $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
+      if (data) {
+       this.setState({listOfJournal: data});
+       console.log('wwwwwww', data)
+      }
+    });
   }
 
   changeYear = (direction) => {
@@ -63,7 +73,8 @@ class CalendarGrid extends React.Component {
             dateObject={{
               year:this.state.year,
               month:this.state.month,
-              day:dateNumber}}
+              day:dateNumber
+            }}
           /> :
           ""
         }
@@ -115,9 +126,8 @@ class CalendarGrid extends React.Component {
     });
   }
   render () {
-
     return (
-      <React.Fragment>
+      <React.Fragment>        
             <div className="calendarSelection">
             Year
               <div style={{display:"block"}}>
