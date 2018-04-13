@@ -11,6 +11,9 @@ class WatsonController < ApplicationController
 
         
         content = Sanitize.clean(params['content'])
+        # puts "ddddddd#{params['day']}"
+        # year =
+        # month=params['month']
         
         begin
         
@@ -56,7 +59,7 @@ class WatsonController < ApplicationController
               # This is hard code. We need to change this.
               location = "Vanraining"
               weather = "Sunny"
-              date = Date.new(2018, 3, 7)
+              date = Date.new(2018, 3, 12)
             
               if journal = Journal.check_journal(email, date)
                 

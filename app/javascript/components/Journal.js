@@ -13,13 +13,15 @@ class Journal extends React.Component {
     }
     this.onChange = this.onChange.bind(this);
     this.handleJournalSubmit = this.handleJournalSubmit.bind(this);
+
+  
   }
 
   onChange(evt) {
     CK = evt;
-    console.log("onChange fired with event info: ", evt);
+    //console.log("onChange fired with event info: ", evt);
     var newContent = evt.editor.getData();
-    console.log(newContent)
+    //console.log(newContent)
     this.setState({
       content: newContent
     })
@@ -29,8 +31,7 @@ class Journal extends React.Component {
   handleJournalSubmit(event) {
     console.log("click journal submit!");
     let $journalContent = this.state.content;
-
-    $.post("/watson", { content: $journalContent }, (response) => {
+    $.post("/watson", { content: $journalContent, year: this.props.dateObject.year, month: this.props.dateObject.month-1, day: this.props.dateObject.day}, (response) => {
       console.log("response:", response);
       if (!response.error){
         $('#journalModal').modal('close');
@@ -41,14 +42,14 @@ class Journal extends React.Component {
     })
   }
 
-
   render() {
+    let uniqueId = this.props.dateObject.day + "journalModal";
     return (
       <React.Fragment>
-        <Button id="createJournalButton" onClick={() => { $('#journalModal').modal('open') }}>C</Button>
+        <Button id="createJournalButton" onClick={() => { $('#' + uniqueId).modal('open') }}>C</Button>
         <Modal
           header='Journal'
-          id="journalModal">
+          id={uniqueId}>
           <CKEditor
             activeClass="p10"
             content={this.state.content}
