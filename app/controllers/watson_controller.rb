@@ -11,9 +11,9 @@ class WatsonController < ApplicationController
 
         
         content = Sanitize.clean(params['content'])
-        # puts "ddddddd#{params['day']}"
-        # year =
-        # month=params['month']
+        day = params['day'].to_i
+        month = params['month'].to_i
+        year = params['year'].to_i
         
         begin
         
@@ -55,11 +55,12 @@ class WatsonController < ApplicationController
               sentiment_score = results["keywords"][0]["sentiment"]["score"]
               user_id = @current_user.id
               email = User.find(user_id).email
+              date = Date.new(year, month, day)
 
               # This is hard code. We need to change this.
               location = "Vanraining"
               weather = "Sunny"
-              date = Date.new(2018, 3, 12)
+              
             
               if journal = Journal.check_journal(email, date)
                 
