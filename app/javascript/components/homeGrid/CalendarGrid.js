@@ -29,6 +29,8 @@ class CalendarGrid extends React.Component {
         let currentMonthJournals = data.filter((journal) => {
           let year = Number(journal.date.slice(0, 4));
           let month = Number(journal.date.slice(5, 7));
+          let day = Number(journal.date.slice(-2));
+          console.log(day);
           if (this.state.year === year && this.state.month === month) {
             return journal;
           }
@@ -75,10 +77,13 @@ class CalendarGrid extends React.Component {
     return new Date(year,month,0).getDate();
   }
 
-  drawWeek=(className,weekNumber)=>{
+  drawWeek = (className, weekNumber) => {
     let daysArray = [1, 2, 3, 4, 5, 6, 7];
     return daysArray.map((day)=>{
-      let dateNumber = (weekNumber-1)*7+day;
+      let dateNumber = (weekNumber - 1) * 7 + day;
+      let viableJournalDatas = this.state.listOfJournal
+        .filter(journal => Number(journal.date.split('-')[2]) === dateNumber);
+      let journalContent = (viableJournalDatas[0] || {content:''}).content;
       return <li key={day}
         className={className} 
         data-id={day}
@@ -89,7 +94,9 @@ class CalendarGrid extends React.Component {
               year:this.state.year,
               month:this.state.month,
               day:dateNumber
-            }} journalData={this.state.listOfJournal}
+            }}
+            // journalData={journalData}
+            journalContent={journalContent}
           /> :
           ""
         }
@@ -166,8 +173,6 @@ class CalendarGrid extends React.Component {
             <ul className="week" data-id={5}>{this.drawReminder()}</ul>
           </div>
         </div>
-
-        
       </React.Fragment>
     );
   }
