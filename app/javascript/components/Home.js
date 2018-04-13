@@ -3,7 +3,9 @@ import PropTypes from "prop-types"
 import Grid from "./homeGrid/CalendarGrid"
 
 class Home extends React.Component {
-
+constructor(props){
+  super(props);
+}
   getXandY = () => {
     $(document).on('click', '.day', (e) => {
       let target = $(e.currentTarget),
@@ -17,7 +19,10 @@ class Home extends React.Component {
     return (
       //This will be where we add the Grid for the flowers
       <React.Fragment>
+<<<<<<< HEAD
         {/* <h1>This is the homepage</h1> */}
+=======
+>>>>>>> cddff53560066149c4e821fe1bb44f8004416fe6
         <div className="container" style={{ display: "block" }}>
           <h3 className="main-title">Bloom Diary</h3>
           <form method="post" action="/watson">
@@ -25,9 +30,8 @@ class Home extends React.Component {
           </form>
 
         </div>
-        <Grid onClick={this.getXandY()}/>
-         {/* Simulation to test Watson API */}
-         
+        <h1>{this.props.userSession}</h1>
+        {(this.props.userSession!==null)?<Grid onClick={this.getXandY()}/>: ""}
       </React.Fragment>
     );
   }

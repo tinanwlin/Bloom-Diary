@@ -9,7 +9,7 @@ class Journal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: '',
+      content: this.props.dateObject.content || '',
     }
     this.onChange = this.onChange.bind(this);
     this.handleJournalSubmit = this.handleJournalSubmit.bind(this);
@@ -17,23 +17,21 @@ class Journal extends React.Component {
 
   onChange(evt) {
     CK = evt;
-    console.log("onChange fired with event info: ", evt);
     var newContent = evt.editor.getData();
-    console.log(newContent)
     this.setState({
       content: newContent
     })
   }
 
 
-  handleJournalSubmit(event) {
+  handleJournalSubmit(event,id) {
+    let uniqueId = this.props.dateObject.day + "journalModal";
     console.log("click journal submit!");
     let $journalContent = this.state.content;
-
-    $.post("/watson", { content: $journalContent }, (response) => {
+    $.post("/watson", { content: $journalContent, year: this.props.dateObject.year, month: this.props.dateObject.month, day: this.props.dateObject.day}, (response) => {
       console.log("response:", response);
       if (!response.error){
-        $('#journalModal').modal('close');
+        $('#' + uniqueId).modal('close');
         CK.editor.setData('');
       } else {
         alert(response.error)
@@ -41,17 +39,18 @@ class Journal extends React.Component {
     })
   }
 
-
-  render() {
+   render() {
+    let uniqueId = this.props.dateObject.day + "journalModal";
     return (
       <React.Fragment>
-        <Button id="createJournalButton" onClick={() => { $('#journalModal').modal('open') }}>C</Button>
+        <Button id="createJournalButton" onClick={() => { $('#' + uniqueId).modal('open')
+       }}>C</Button>
         <Modal
           header='Journal'
-          id="journalModal">
+          id={uniqueId}>
           <CKEditor
             activeClass="p10"
-            content={this.state.content}
+            content={this.props.journalContent}
             events={{
               "change": this.onChange
             }} />

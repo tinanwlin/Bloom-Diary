@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import { Button,Icon } from "react-materialize"
 import Journal from "../Journal"
 
-let  x;
 class CalendarGrid extends React.Component {
 
 
@@ -18,14 +17,39 @@ class CalendarGrid extends React.Component {
       year:yyyy,
       month:mm,
       day:dd,
-      today: mm + "/" + dd + "/" + yyyy
+      today: mm + "/" + dd + "/" + yyyy,
+      listOfJournal: []
     }
+  }
+
+  //Moving get server response to a separate function it can be easily in other functions
+  getData=()=>{
+    $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
+      if (data) {
+        let currentMonthJournals = data.filter((journal) => {
+          let year = Number(journal.date.slice(0, 4));
+          let month = Number(journal.date.slice(5, 7));
+          let day = Number(journal.date.slice(-2));
+          console.log(day);
+          if (this.state.year === year && this.state.month === month) {
+            return journal;
+          }
+        });
+        this.setState({ listOfJournal: currentMonthJournals });
+        console.log(this.state.listOfJournal);
+      }
+    });
+  }
+
+  componentDidMount(){
+    this.getData();
   }
 
   changeYear = (direction) => {
     this.setState({
       year: this.state.year + direction 
     });
+    this.getData();
   }
 
   changeMonth = (direction) => {
@@ -34,40 +58,48 @@ class CalendarGrid extends React.Component {
         month: 1,
         year: this.state.year + 1
       });
+      this.getData();
     } else if(this.state.month + direction < 1){
       this.setState({
         month: 12,
         year: this.state.year - 1
       });
+      this.getData();
     } else {
       this.setState({
         month: this.state.month + direction
       });
+      this.getData();
     }
   }
 
   daysInMonth(month,year) {
     return new Date(year,month,0).getDate();
   }
-  
-  componentWillMount(){
-    let date = new Date();
-    let currentDay = date.getDate();
-    let weekValue = Math.floor(currentDay/7) + 1;
-    let dayValue = currentDay%7;
-  }
 
-  drawWeek=(className,weekNumber)=>{
-    const daysInAWeek = 7;
-    let daysArray = [];
-    for (let dayNumber = 1; dayNumber < daysInAWeek+1 ; dayNumber++){
-      daysArray.push(dayNumber); 
-    }
+  drawWeek = (className, weekNumber) => {
+    let daysArray = [1, 2, 3, 4, 5, 6, 7];
     return daysArray.map((day)=>{
-      let dateNumber = (weekNumber-1)*7+day;
-      console.log("dateNumber: ",dateNumber,"weekNumber: ",weekNumber,"day: ",day);
-      return <li key={day} className={className} data-id={day} data-datenumber={dateNumber} onClick={()=>{console.log(`year: ${this.state.year} month: ${this.state.month} day:${(weekNumber-1)*7+day}`)}}>
-        {(className==="day")?<Journal/>:""}
+      let dateNumber = (weekNumber - 1) * 7 + day;
+      let viableJournalDatas = this.state.listOfJournal
+        .filter(journal => Number(journal.date.split('-')[2]) === dateNumber);
+      let journalContent = (viableJournalDatas[0] || {content:''}).content;
+      return <li key={day}
+        className={className} 
+        data-id={day}
+        data-datenumber={dateNumber}>
+        {(className === "day") ? 
+          <Journal 
+            dateObject={{
+              year:this.state.year,
+              month:this.state.month,
+              day:dateNumber
+            }}
+            // journalData={journalData}
+            journalContent={journalContent}
+          /> :
+          ""
+        }
       </li>
     });
   }
@@ -104,15 +136,20 @@ class CalendarGrid extends React.Component {
       reminderDaysArray.push(reminderCount);
     }
     return reminderDaysArray.map((day) => {
-      return <li key={day} className="day" data-id={day} data-number={28+day} onClick={() => { console.log(`year: ${this.state.year} month: ${this.state.month} day:${28 + day}`)}}>
-        <Journal/>
+      return <li key={day} className="day" data-id={day} data-number={28+day}>
+        <Journal
+          dateObject={{
+            year: this.state.year,
+            month: this.state.month,
+            day: 28+day
+          }}
+        />
       </li>
     });
   }
   render () {
-
     return (
-      <React.Fragment>
+      <React.Fragment>        
             <div className="calendarSelection">
               {/* Shows Year */}
               <div style={{display:"block"}}>
@@ -140,8 +177,6 @@ class CalendarGrid extends React.Component {
             <ul className="week" data-id={5}>{this.drawReminder()}</ul>
           </div>
         </div>
-
-        
       </React.Fragment>
     );
   }

@@ -25,6 +25,7 @@ class App extends React.Component {
 
     this.state = {
       currentUser:null,
+      currentUserId:null,
       serverResponse:[{}]
     }
 
@@ -40,7 +41,7 @@ class App extends React.Component {
     $.get('/me', (data) => {
       console.log("/me:", data);
       if (data) {
-        this.setState({currentUser:data.nickname});
+        this.setState({currentUser:data.nickname, currentUserId:data.id});   
       }
     });
   }
@@ -50,20 +51,23 @@ class App extends React.Component {
   }
 
   render () {
+    console.log(this.state.currentUserId)
     return (
         <BrowserRouter>
         <div>
             <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
             <Switch>
-              <Route exact path='/' component={Home} />
+            <Route exact path='/' render={(props) => (<Home {...props} userSession={this.state.currentUser}/>)}/>
               <Route path='/profile' render={(props) => (
                 <Profile {...props} updateUserNickname={this.updateUserNickname}/>
               )}/>
               <Route path='/user' component={User} />
-              <Route path='/journals' component={JournalsList} />
+              <Route path='/journals' render={(routeProps) => (
+                <JournalsList {...routeProps} currentUserId={this.state.currentUserId}/>
+              )}/>
               <Route component={NoMatch} />
             </Switch>
-            <Footer/>
+            <Footer />
           </div>
         </BrowserRouter>
     );
