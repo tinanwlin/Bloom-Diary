@@ -22,6 +22,7 @@ class CalendarGrid extends React.Component {
     }
   }
 
+  //Moving get server response to a separate function it can be easily in other functions
   getData=()=>{
     $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
       if (data) {
@@ -88,7 +89,7 @@ class CalendarGrid extends React.Component {
               year:this.state.year,
               month:this.state.month,
               day:dateNumber
-            }}
+            }} journalData={this.state.listOfJournal}
           /> :
           ""
         }

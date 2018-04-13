@@ -13,28 +13,24 @@ class Journal extends React.Component {
     }
     this.onChange = this.onChange.bind(this);
     this.handleJournalSubmit = this.handleJournalSubmit.bind(this);
-
-  
   }
 
   onChange(evt) {
     CK = evt;
-    //console.log("onChange fired with event info: ", evt);
     var newContent = evt.editor.getData();
-    //console.log(newContent)
     this.setState({
       content: newContent
     })
   }
 
 
-  handleJournalSubmit(event) {
+  handleJournalSubmit(event,id) {
     console.log("click journal submit!");
     let $journalContent = this.state.content;
     $.post("/watson", { content: $journalContent, year: this.props.dateObject.year, month: this.props.dateObject.month, day: this.props.dateObject.day}, (response) => {
       console.log("response:", response);
       if (!response.error){
-        $('#journalModal').modal('close');
+        $('#' + uniqueId).modal('close');
         CK.editor.setData('');
       } else {
         alert(response.error)
@@ -42,8 +38,8 @@ class Journal extends React.Component {
     })
   }
 
-  render() {
-    let uniqueId = this.props.dateObject.day + "journalModal";
+   render() {
+    var uniqueId = this.props.dateObject.day + "journalModal";
     return (
       <React.Fragment>
         <Button id="createJournalButton" onClick={() => { $('#' + uniqueId).modal('open') }}>C</Button>
