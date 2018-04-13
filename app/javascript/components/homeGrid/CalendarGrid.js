@@ -73,7 +73,8 @@ class CalendarGrid extends React.Component {
             dateObject={{
               year:this.state.year,
               month:this.state.month,
-              day:dateNumber}}
+              day:dateNumber
+            }}
           /> :
           ""
         }
@@ -125,9 +126,8 @@ class CalendarGrid extends React.Component {
     });
   }
   render () {
-
     return (
-      <React.Fragment>
+      <React.Fragment>        
             <div className="calendarSelection">
             Year
               <div style={{display:"block"}}>

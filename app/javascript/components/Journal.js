@@ -9,7 +9,7 @@ class Journal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: '',
+      content: this.props.dateObject.content || '',
     }
     this.onChange = this.onChange.bind(this);
     this.handleJournalSubmit = this.handleJournalSubmit.bind(this);
@@ -31,7 +31,7 @@ class Journal extends React.Component {
   handleJournalSubmit(event) {
     console.log("click journal submit!");
     let $journalContent = this.state.content;
-    $.post("/watson", { content: $journalContent, year: this.props.dateObject.year, month: this.props.dateObject.month-1, day: this.props.dateObject.day}, (response) => {
+    $.post("/watson", { content: $journalContent, year: this.props.dateObject.year, month: this.props.dateObject.month, day: this.props.dateObject.day}, (response) => {
       console.log("response:", response);
       if (!response.error){
         $('#journalModal').modal('close');
