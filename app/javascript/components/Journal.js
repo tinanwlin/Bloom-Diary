@@ -25,6 +25,7 @@ class Journal extends React.Component {
 
 
   handleJournalSubmit(event,id) {
+    let uniqueId = this.props.dateObject.day + "journalModal";
     console.log("click journal submit!");
     let $journalContent = this.state.content;
     $.post("/watson", { content: $journalContent, year: this.props.dateObject.year, month: this.props.dateObject.month, day: this.props.dateObject.day}, (response) => {
@@ -39,16 +40,17 @@ class Journal extends React.Component {
   }
 
    render() {
-    var uniqueId = this.props.dateObject.day + "journalModal";
+    let uniqueId = this.props.dateObject.day + "journalModal";
     return (
       <React.Fragment>
-        <Button id="createJournalButton" onClick={() => { $('#' + uniqueId).modal('open') }}>C</Button>
+        <Button id="createJournalButton" onClick={() => { $('#' + uniqueId).modal('open')
+       }}>C</Button>
         <Modal
           header='Journal'
           id={uniqueId}>
           <CKEditor
             activeClass="p10"
-            content={this.state.content}
+            content={this.props.journalContent}
             events={{
               "change": this.onChange
             }} />

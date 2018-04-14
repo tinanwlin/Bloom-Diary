@@ -19,10 +19,11 @@ constructor(props){
     return (
       //This will be where we add the Grid for the flowers
       <React.Fragment>
+        {/* <h1>This is the homepage</h1> */}
         <div className="container" style={{ display: "block" }}>
-          <h3>this is the index page in the home controller</h3>
+          <h3 className="main-title">Bloom Diary</h3>
           <form method="post" action="/watson">
-            <input type="submit" text="submit" value="submit" />
+            {/* <input type="submit" text="submit" value="submit" /> */}
           </form>
 
         </div>

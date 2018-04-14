@@ -29,6 +29,8 @@ class CalendarGrid extends React.Component {
         let currentMonthJournals = data.filter((journal) => {
           let year = Number(journal.date.slice(0, 4));
           let month = Number(journal.date.slice(5, 7));
+          let day = Number(journal.date.slice(-2));
+          console.log(day);
           if (this.state.year === year && this.state.month === month) {
             return journal;
           }
@@ -75,10 +77,13 @@ class CalendarGrid extends React.Component {
     return new Date(year,month,0).getDate();
   }
 
-  drawWeek=(className,weekNumber)=>{
+  drawWeek = (className, weekNumber) => {
     let daysArray = [1, 2, 3, 4, 5, 6, 7];
     return daysArray.map((day)=>{
-      let dateNumber = (weekNumber-1)*7+day;
+      let dateNumber = (weekNumber - 1) * 7 + day;
+      let viableJournalDatas = this.state.listOfJournal
+        .filter(journal => Number(journal.date.split('-')[2]) === dateNumber);
+      let journalContent = (viableJournalDatas[0] || {content:''}).content;
       return <li key={day}
         className={className} 
         data-id={day}
@@ -89,7 +94,9 @@ class CalendarGrid extends React.Component {
               year:this.state.year,
               month:this.state.month,
               day:dateNumber
-            }} journalData={this.state.listOfJournal}
+            }}
+            // journalData={journalData}
+            journalContent={journalContent}
           /> :
           ""
         }
@@ -144,17 +151,21 @@ class CalendarGrid extends React.Component {
     return (
       <React.Fragment>        
             <div className="calendarSelection">
-            Year
+              {/* Shows Year */}
               <div style={{display:"block"}}>
-            <Button waves='light' onClick={()=>this.changeYear(-1)}>Previous<Icon left>chevron_left</Icon></Button>
-              {this.state.year}
-            <Button waves='light' onClick={()=>this.changeYear(+1)}>Next<Icon left>chevron_right</Icon></Button>
+            <a className="waves-effect waves btn-flat" onClick={()=>this.changeYear(-1)}>◀︎</a>
+              <div className="show-year">
+                {this.state.year}
+              </div>
+            <a className="waves-effect waves btn-flat" onClick={()=>this.changeYear(+1)}>▶︎</a>
               </div>
             <div>
-              Month
-            <Button waves='light' onClick={()=>this.changeMonth(-1)}>Previous<Icon left>chevron_left</Icon></Button>
+              {/* Shows Month */}
+            <a className="waves-effect waves btn-flat" onClick={()=>this.changeMonth(-1)}>◀︎</a>
+              <div className="show-month">
                 {this.state.month}
-            <Button waves='light' onClick={() => this.changeMonth(+1)}>Next<Icon left>chevron_right</Icon></Button>
+              </div>
+            <a className="waves-effect waves btn-flat" onClick={() => this.changeMonth(+1)}>▶︎</a>
             </div>
         </div>
         <div className="grid_container">
@@ -166,8 +177,6 @@ class CalendarGrid extends React.Component {
             <ul className="week" data-id={5}>{this.drawReminder()}</ul>
           </div>
         </div>
-
-        
       </React.Fragment>
     );
   }
