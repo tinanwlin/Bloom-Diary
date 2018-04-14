@@ -148,7 +148,7 @@ class CalendarGrid extends React.Component {
       const entry = listOfJournal.find(x => {
         const [ , ,postDay ] = x.date.split('-').map(Number);
         return postDay === day;
-      }) || {};
+      }) || "";
       
       allDays.push({ year, month, day, content: entry.content });
     }
