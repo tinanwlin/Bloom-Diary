@@ -19,10 +19,7 @@ constructor(props){
     return (
       //This will be where we add the Grid for the flowers
       <React.Fragment>
-<<<<<<< HEAD
         {/* <h1>This is the homepage</h1> */}
-=======
->>>>>>> cddff53560066149c4e821fe1bb44f8004416fe6
         <div className="container" style={{ display: "block" }}>
           <h3 className="main-title">Bloom Diary</h3>
           <form method="post" action="/watson">
