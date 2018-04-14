@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 import { Modal, Input, Button } from "react-materialize"
 import CKEditor from "react-ckeditor-component"
+import happyFlower from "../../assets/images/eatFlower.gif"
+import sadFlower from "../../assets/images/sadFlower.gif" 
 
 let CK;
 class Journal extends React.Component {
@@ -58,9 +60,9 @@ class Journal extends React.Component {
     if (this.props.journalData) {
       let sentiment_score = this.props.journalData && this.props.journalData.sentiment_score;
       if (sentiment_score < 0) {
-        img = <img className="calImg" src="https://media.giphy.com/media/xTcf0YRZkZgGLM0ZLa/source.gif" alt="" />
+        img = <img className="calImg" src={ sadFlower } alt="" />;
       } else {
-        img = <img className="calImg" src="https://media.giphy.com/media/9fO9FoYHF8gQU/giphy.gif" alt="" />;
+        img = <img className="calImg" src={ happyFlower } alt="" />;
       }
       buttonContent = <p>{img}</p>;
     }
