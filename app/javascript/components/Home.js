@@ -28,7 +28,7 @@ constructor(props){
 
         </div>
         <h1>{this.props.userSession}</h1>
-        {(this.props.userSession!==null)?<Grid onClick={this.getXandY()}/>: ""}
+        {(this.props.userSession!==null)?<Grid currentUserId={this.props.currentUserId} onClick={this.getXandY()}/>: ""}
       </React.Fragment>
     );
   }
