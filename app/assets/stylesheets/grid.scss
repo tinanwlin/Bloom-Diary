@@ -1,5 +1,4 @@
-
-//Theme Colors
+// Theme Colors
 $grass-green: #4A7516;
 $jade-green: #4E9980;
 $tiffany-blue: #6CB1A2;
@@ -16,26 +15,22 @@ $bear-brown: #63342C;
 $soil-brown: #8D786D;
 $unicorn-purple: #BDCDEB;
 
-
 .grid_container {
     position: relative;
     display: block;
     height: 610px;
     width: 850px;
-    
     margin: auto;
     margin-top: 30px;
-    margin-bottom: 200px ;
-
-    & > div {
+    margin-bottom: 200px;
+    &>div {
         height: fit-content;
         position: absolute;
         top: 0;
         left: 0;
-
-        &.calendar_canvas{
-            
-            .canvasDay{
+        &.calendar_canvas {
+            box-shadow: 20px 20px 10px $beige-brown;
+            .canvasDay {
                 height: 120px;
                 width: 120px;
                 color: white;
@@ -43,17 +38,13 @@ $unicorn-purple: #BDCDEB;
                 border: 1px solid white;
                 display: inline-block;
             }
-            
-            .canvasWeek{
+            .canvasWeek {
                 margin: 0;
             }
-
         }
-
         &.calendar_month {
             z-index: 1;
-
-            .day{
+            .day {
                 height: 120px;
                 width: 120px;
                 color: white;
@@ -61,39 +52,37 @@ $unicorn-purple: #BDCDEB;
                 border: 1px solid white;
                 display: inline-block;
             }
-
-            .week{
-                margin:0;
+            .week {
+                margin: 0;
             }
         }
     }
-
     ul {
         height: 120px;
     }
 }
 
- .calendarSelection {
-     text-align: center;
- }
+.calendarSelection {
+    text-align: center;
+    display: inline-block;
+    margin: 0px 230px;
+}
 
+.show-month {
+    width: 60px;
+    height: 30px;
+    margin: auto;
+    display: inline-block;
+    font-family: 'Dancing Script', cursive;
+    font-size: 25px;
+    font-weight: 700;
+    padding: 0 20px;
+}
 
- .show-month {
-     width: 60px;
-     height: 30px;
-     margin: auto;
-     display: inline-block;
-     font-family: 'Dancing Script', cursive;
-     font-size: 25px;
-     font-weight: 700;
-     padding: 0 20px;
-    
- }
-
- .show-year {
-     font-family: 'Dancing Script', cursive;
-     display: inline-block;
-     font-size: 25px;
-     font-weight: 700;
-     padding: 0px 3px;
- }
+.show-year {
+    font-family: 'Dancing Script', cursive;
+    display: inline-block;
+    font-size: 25px;
+    font-weight: 700;
+    padding: 0px 3px;
+}

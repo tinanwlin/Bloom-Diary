@@ -1,67 +1,77 @@
 import React from "react"
 import PropTypes from "prop-types"
-import styled from "styled-components"
+// // import styled from "styled-components"
 import { Modal, Input, Button } from "react-materialize"
-import CKEditor from "react-ckeditor-component"
+import RichTextEditor from 'react-rte'
 
-let CK;
-class Journal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      content: this.props.dateObject.content || '',
-    }
-    this.onChange = this.onChange.bind(this);
-    this.handleJournalSubmit = this.handleJournalSubmit.bind(this);
+export default class Journal extends React.Component {
+  state = {
+    content: RichTextEditor.createEmptyValue()
   }
 
-  onChange(evt) {
-    CK = evt;
-    var newContent = evt.editor.getData();
-    this.setState({
-      content: newContent
-    })
+  componentWillReceiveProps(newProps) {
+    this.setState({ content: RichTextEditor.createValueFromString(newProps.content, 'html') });
   }
 
+  onChange = (content) => {
+    this.setState({ content });
+  }
 
-  handleJournalSubmit(event,id) {
-    let uniqueId = this.props.dateObject.day + "journalModal";
+  closeModal = () => {
+    $('#' + this.uniqueId).modal('close');
+  }
+
+  handleJournalSubmit = (event, id) => {
+    const { year, month, day } = this.props;
+    const { content } = this.state;
+
     console.log("click journal submit!");
-    let $journalContent = this.state.content;
-    $.post("/watson", { content: $journalContent, year: this.props.dateObject.year, month: this.props.dateObject.month, day: this.props.dateObject.day}, (response) => {
+    
+    $.post("/watson", { content: content.toString('markdown'), year, month, day }, (response) => {
       console.log("response:", response);
       if (!response.error){
-        $('#' + uniqueId).modal('close');
-        CK.editor.setData('');
+        this.closeModal();
       } else {
         alert(response.error)
       }
-    })
+    });
   }
 
-   render() {
-    let uniqueId = this.props.dateObject.day + "journalModal";
+  get uniqueId() {
+    return `journalModal-${this.props.day}`;
+  }
+
+  get dateString() {
+    const { year, month, day } = this.props;
+    return `${year}-${month}-${day}`;
+  }
+
+  render() {
+    console.log('Journal::render');
     return (
       <React.Fragment>
-        <Button id="createJournalButton" onClick={() => { $('#' + uniqueId).modal('open')
-       }}>C</Button>
-        <Modal
-          header='Journal'
-          id={uniqueId}>
-          <CKEditor
-            activeClass="p10"
-            content={this.props.journalContent}
-            events={{
-              "change": this.onChange
-            }} />
-            
-          <button onClick={this.handleJournalSubmit}>Create Journal</button> 
-        </Modal>
         
+        <Modal
+          header={ `${this.dateString} :: Journal` }
+          id={this.uniqueId}
+          trigger={
+            <Button className="createJournalButton">
+              {this.dateString}
+            </Button>
+          }
+          actions={
+            <React.Fragment>
+              <Button onClick={this.handleJournalSubmit}>Create Journal</Button>
+              <Button onClick={this.closeModal} flat={true}>Close</Button>
+            </React.Fragment>
+          }
+        >
+          <RichTextEditor
+            value={this.state.content}
+            onChange={this.onChange}
+            />
+        </Modal>
       </React.Fragment>
     );
   }
 }
-
-
-export default Journal
