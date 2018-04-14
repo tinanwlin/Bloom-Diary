@@ -10,7 +10,7 @@ class Footer extends React.Component {
       text-align: center;
       color: palevioletred;
       background-color: black;
-      position: absolute;
+      position: relative;
       bottom: 0;
       width: 100%;
     `;
