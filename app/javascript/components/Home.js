@@ -6,15 +6,6 @@ class Home extends React.Component {
 constructor(props){
   super(props);
 }
-  getXandY = () => {
-    $(document).on('click', '.day', (e) => {
-      let target = $(e.currentTarget),
-        x = target.parents('.week').attr('data-id'),
-        y = target.attr('data-id');
-      console.log(`x:${x} and y:${y}`);
-    });
-  }
-
   render () {
     return (
       //This will be where we add the Grid for the flowers
@@ -28,7 +19,7 @@ constructor(props){
 
         </div>
         <h1>{this.props.userSession}</h1>
-        {(this.props.userSession!==null)?<Grid onClick={this.getXandY()}/>: ""}
+        {(this.props.userSession!==null)?<Grid/>: ""}
       </React.Fragment>
     );
   }
