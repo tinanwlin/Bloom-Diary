@@ -22,9 +22,28 @@ class JournalsList extends React.Component {
     return (
       //Main div starts here.
       <div className="container"> 
+        
         <h1 className="journals-header">
           REFLECTIONS
         </h1>
+        
+          {/* Flower */}
+          <div id="position" class="sunflower">
+          <div class="head">
+          <div id="eye-1" class="eye"></div>
+          <div id="eye-2" class="eye"></div>
+          <div class="mouth"></div>
+        </div>
+          <div class="petals"></div>
+          <div class="trunk">
+          <div class="left-branch"></div>
+          <div class="right-branch"></div>
+        </div>
+        {/* end Flower */}
+        
+      
+        <div class="vase"></div>
+        </div>
         {this.state.listOfJournal.map(journal =>
           <div key={journal.id} className="journals-container">
             <div className="journal">
