@@ -44,7 +44,7 @@ class Journal extends React.Component {
     return (
       <React.Fragment>
         <Button id="createJournalButton" onClick={() => { $('#' + uniqueId).modal('open')
-       }}>C</Button>
+       }}>{this.props.dateObject.day}</Button>
         <Modal
           header='Journal'
           id={uniqueId}>

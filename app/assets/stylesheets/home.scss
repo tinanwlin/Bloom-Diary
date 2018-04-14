@@ -15,27 +15,25 @@ $bear-brown: #63342C;
 $soil-brown: #8D786D;
 $unicorn-purple: #BDCDEB;
 
-
 .main-title {
-  text-align: center;
+  // display: inline-block;
+  // margin: 22px 230px;
   font-family: 'Dancing Script', cursive;
   font-weight: 700;
 }
+
 .entire-page {
   background-color: $unicorn-purple;
 }
-
 
 .profilePage {
   background-image: url("/unsplash.jpg");
   text-align: center;
 }
 
-
-
 .topNav {
-    background-color: $grass-green;
-    font-family: 'Merienda', cursive;
+  background-color: $grass-green;
+  font-family: 'Merienda', cursive;
 }
 
 .brand-logo {
@@ -47,5 +45,4 @@ canvas {
   width: 50%;
   height: 50%;
 }
-
 
