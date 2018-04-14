@@ -3,8 +3,8 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 import { Modal, Input, Button } from "react-materialize"
 import CKEditor from "react-ckeditor-component"
-import happyFlower from "../../assets/images/eatFlower.gif"
-import sadFlower from "../../assets/images/sadFlower.gif" 
+import happyFlower from "../../assets/images/flying.gif"
+import sadFlower from "../../assets/images/crying.gif" 
 
 let CK;
 class Journal extends React.Component {
