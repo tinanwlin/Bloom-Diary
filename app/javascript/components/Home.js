@@ -1,7 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Grid from "./homeGrid/CalendarGrid"
-
+// import Flower from "../../assets/images/flowers.svg"
+// import Flower from './Flower'
 class Home extends React.Component {
 constructor(props){
   super(props);
@@ -21,6 +22,7 @@ constructor(props){
       <React.Fragment>
         <div className="container" style={{ display: "block" }}>
           <h3>this is the index page in the home controller</h3>
+          {/*<Flower width='500px' />*/}
           <form method="post" action="/watson">
             <input type="submit" text="submit" value="submit" />
           </form>

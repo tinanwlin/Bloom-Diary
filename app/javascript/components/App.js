@@ -8,7 +8,8 @@ import Profile from "./Profile"
 import Home from "./Home"
 import User from "./User"
 import JournalsList from './JournalsList'
-import Journal from './Journal';
+import Journal from './Journal'
+
 
 const NoMatch = ({ location }) => (
   <div>

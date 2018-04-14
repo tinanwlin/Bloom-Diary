@@ -1,0 +1,79 @@
+			.bp {
+				display: block;
+				margin: 40px auto 0;
+			}
+			.bp__stalk {
+				fill: none;
+				stroke-width: 10;
+			}
+			.bp__flower {
+				// opacity: 1;
+			}
+			.bp__flower--b {
+				stroke-width: 1.2;
+				stroke: white;
+			}
+			.bp__fill--blue {
+				fill: #21BFF0;
+			}
+			.bp__fill--orange {
+				fill: #F79421;
+			}
+			.bp__fill--green {
+				fill: #73A62E;
+			}
+			.bp__fill--beige {
+				fill: #BDB17D;
+			}
+			.bp__stroke--green {
+				stroke: #73A62E;
+			}
+			.bp__stroke--green-light {
+				stroke: #8BC53F;
+			}
+			.bp__stroke--green-lighter {
+				stroke: #B7F564;
+			}
+
+
+.bp__flower--02-g {
+  transform: translate(43px, -34px); 
+  transform-origin: 173px 64px;
+}
+.bp__flower--03-g{ 
+  transform: translate(170px, 16px);
+  transform-origin: 173px 64px;
+}
+.bp__flower--04-g{
+  transform: translate(71px, 111px) scale(.9);
+  transform-origin: 173px 64px;
+ }
+.bp__flower--05-g{
+  transform: translate(-90px, 87px);
+  transform-origin: 173px 64px;
+}
+.bp__flower--06-g{
+  transform: translate(-143px, 24px) scale(.7);
+  transform-origin: 173px 64px;
+}
+.bp__flower--07-g{
+  transform: scale(.8)translate(-32px, 4px);
+  transform-origin: 173px 64px;
+}
+
+svg:hover .bp__stalk {
+  animation: grow-stalk 5s;
+}
+svg:hover .bp__stalk--short {
+  animation: grow-stalk 5s 5s;
+}
+
+@keyframes grow-stalk {
+  0% {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

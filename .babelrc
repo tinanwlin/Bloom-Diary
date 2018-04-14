@@ -13,6 +13,14 @@
     "react"
   ],
   "plugins": [
+    [
+      "inline-react-svg",
+      {
+        "svgo": {
+          "cleanupIDs": false
+        }
+      }
+    ],
     "syntax-dynamic-import",
     "transform-object-rest-spread",
     [

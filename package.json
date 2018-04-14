@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^3.4.3",
+    "babel-plugin-inline-react-svg": "^0.5.2",
     "babel-preset-react": "^6.24.1",
     "chart.js": "^1.1.1",
     "prop-types": "^15.6.1",
