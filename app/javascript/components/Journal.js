@@ -16,7 +16,7 @@ export default class Journal extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.setState({
-      content: RichTextEditor.createValueFromString(newProps.content, 'html'),
+      content: RichTextEditor.createValueFromString(newProps.content || "", 'html'),
       data: newProps.data || null
     });
   }
@@ -40,11 +40,13 @@ export default class Journal extends React.Component {
       console.log("response:", response);
       if (!response.error){
         this.closeModal();
+        this.props.getData();
 
       } else {
         alert(response.error)
       }
     });
+
   }
 
   get uniqueId() {
