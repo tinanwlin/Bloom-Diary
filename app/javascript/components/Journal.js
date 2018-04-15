@@ -1,12 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-// // import styled from "styled-components"
 import { Modal, Input, Button } from "react-materialize"
-
 import happyFlower from "../../assets/images/flying.gif"
 import sadFlower from "../../assets/images/crying.gif" 
-
-
 import RichTextEditor from 'react-rte'
 
 export default class Journal extends React.Component {
@@ -56,7 +52,7 @@ export default class Journal extends React.Component {
 
   get dateString() {
     const { year, month, day } = this.props;
-    return `${year}-${month}-${day}`;
+    return `${day}`;
   }
 
 
@@ -74,9 +70,6 @@ export default class Journal extends React.Component {
       buttonContent = img;
     } 
 
-
-
-    console.log('Journal::render');
     return (
       <React.Fragment>
         

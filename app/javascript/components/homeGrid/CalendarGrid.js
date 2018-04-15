@@ -5,7 +5,8 @@ import Journal from "../Journal"
 import chunk from 'lodash/chunk'
 import { list } from "postcss";
 import shelf from "../../../assets/images/shelf.png"
-class CalendarGrid extends React.Component {
+
+export default class CalendarGrid extends React.Component {
 
 
   constructor(props) {
@@ -181,7 +182,7 @@ class CalendarGrid extends React.Component {
           </li>
         ))}
         </div>
-        <img class="calendarShelf" src={shelf}/>
+        <img className="calendarShelf" src={shelf}/>
       </ul>
     );
   }
@@ -191,15 +192,15 @@ class CalendarGrid extends React.Component {
       <React.Fragment>        
         <div className="calendarSelection">
           {/* Shows Year */}
-          <div style={{display:"block"}}>
+          <div className="yearSelection">
             <a className="waves-effect waves btn-flat" onClick={()=>this.changeYear(-1)}>◀︎</a>
             <div className="show-year">
               {this.state.year}
             </div>
             <a className="waves-effect waves btn-flat" onClick={()=>this.changeYear(+1)}>▶︎</a>
           </div>
-        <div>
           {/* Shows Month */}
+        <div className="monthSelection">
           <a className="waves-effect waves btn-flat" onClick={()=>this.changeMonth(-1)}>◀︎</a>
           <div className="show-month">
             {this.state.month}
@@ -219,5 +220,3 @@ class CalendarGrid extends React.Component {
     );
   }
 }
-
-export default CalendarGrid

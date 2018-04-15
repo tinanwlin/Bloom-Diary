@@ -9,9 +9,9 @@
     width: 100vw;
     margin: auto;
     margin-top: 30px;
+
     &>div {
-        height: fit-content;
-        //position: absolute;
+
         &.calendar_month {
             z-index:999;
             height: 100vh;
@@ -54,6 +54,13 @@
 
 .calendarSelection {
     text-align: center;
+
+    .yearSelection {
+        display: block;
+    }
+    .monthSelection{
+        display: block;
+    }
 
 }
 

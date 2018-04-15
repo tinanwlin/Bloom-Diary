@@ -6,7 +6,6 @@ import NavbarComponent from './Navbar'
 import Footer from './Footer'
 import Profile from './Profile'
 import Home from './Home'
-import User from './User'
 import JournalsList from './JournalsList'
 import Journal from './Journal'
 
@@ -19,7 +18,7 @@ const NoMatch = ({location}) => (
   </div>
 )
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor (props) {
     super(props)
 
@@ -28,16 +27,9 @@ class App extends React.Component {
       currentUserId: null,
       serverResponse: [{}]
     }
-
-    this.setCurrentUser = this
-      .setCurrentUser
-      .bind(this)
-    this.updateUserNickname = this
-      .updateUserNickname
-      .bind(this)
   }
 
-  setCurrentUser (sessionData) {
+  setCurrentUser = (sessionData) => {
     this.setState({currentUser: sessionData})
   }
 
@@ -50,7 +42,7 @@ class App extends React.Component {
     })
   }
 
-  updateUserNickname (newNickname) {
+  updateUserNickname = (newNickname) =>{
     this.setState({currentUser: newNickname})
   }
 
@@ -60,23 +52,20 @@ class App extends React.Component {
       <BrowserRouter>
         <div>
 
-            <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
-            <Switch>
+          <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
+          <Switch>
             <Route exact path='/' render={(props) => (<Home {...props} userSession={this.state.currentUser} currentUserId={this.state.currentUserId}/>)}/>
-              <Route path='/profile' render={(props) => (
-                <Profile {...props} updateUserNickname={this.updateUserNickname}/>
-              )}/>
-              <Route path='/user' component={User} />
-              <Route path='/journals' render={(routeProps) => (
-                <JournalsList {...routeProps} currentUserId={this.state.currentUserId}/>
-              )}/>
-              <Route component={NoMatch} />
-            </Switch>
-            <Footer />
-          </div>
-        </BrowserRouter>
-    );
+            <Route path='/profile' render={(props) => (
+              <Profile {...props} updateUserNickname={this.updateUserNickname}/>
+            )}/>
+            <Route path='/journals' render={(routeProps) => (
+              <JournalsList {...routeProps} currentUserId={this.state.currentUserId}/>
+            )}/>
+            <Route component={NoMatch} />
+          </Switch>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    )
   }
 }
-
-export default App

@@ -14,7 +14,7 @@
 }
 
 .profilePage {
-  background-image: url("/unsplash.jpg");
+  //background-image: url("/unsplash.jpg");
   text-align: center;
 }
 
@@ -34,3 +34,7 @@ canvas {
   height: 50%;
 }
 
+body {
+  background-image: url("brickwall.png");
+  background-repeat: repeat;
+}
