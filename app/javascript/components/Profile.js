@@ -57,7 +57,10 @@ class Profile extends Component {
     const { user } = this.state;
     return (
       <div className="profilePage">
-        <Col className="profileCard" m={6} s={12}>
+        <div className='section'>
+          < MyComponent listOfJournal={this.state.listOfJournal}/>
+        </div>
+        <div className="profileCard section">
           <Card className="profileContent" title="Profile">
             <Input className="profileNickname" s={6} label="Nickname" validate placeholder={user.nickname} value={user.nickname} onChange={e => this.updateUser('nickname', e.target.value) } alt="nickname"/>
             <Input className="profileEmail" s={6} label="Email" validate placeholder={user.email} value={user.email} onChange={e => this.updateUser('email', e.target.value) } alt="email"/>
@@ -65,8 +68,7 @@ class Profile extends Component {
               <Button waves='light' onClick={this.submitUser}>Update Change</Button>
             </div>
           </Card>
-        </Col>
-        < MyComponent listOfJournal={this.state.listOfJournal}/>
+        </div>
       </div>
     );
   }
