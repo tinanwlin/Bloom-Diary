@@ -40,7 +40,7 @@ gem 'faker'
 gem 'redcarpet'
 
 gem 'jquery-rails'
-gem 'materialize-sass', '~> 1.0.0.beta'
+gem 'materialize-sass', '~> 0.100.2'
 gem 'material_icons' 
 
 # Use Capistrano for deployment

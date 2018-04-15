@@ -1,27 +1,31 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 
 class JournalsList extends React.Component {
-
-  constructor (props){
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
       listOfJournal: []
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
       if (data) {
-       this.setState({listOfJournal: data}); 
+        this.setState({listOfJournal: data})
       }
-    });
+    })
+    $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
+      if (data) {
+        this.setState({listOfJournal: data})
+      }
+    })
   }
   
   render() {
     return (
       //Main div starts here.
-      <div className="container"> 
+      <div className="container">
         
         <h1 className="journals-header">
           REFLECTIONS

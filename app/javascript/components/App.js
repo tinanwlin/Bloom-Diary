@@ -69,7 +69,7 @@ class App extends React.Component {
               render={(props) => (<Home {...props} userSession={this.state.currentUser}/>)}/>
             <Route
               path='/profile'
-              render={(props) => (<Profile {...props} updateUserNickname={this.updateUserNickname}/>)}/>
+              render={(props) => (<Profile {...props} updateUserNickname={this.updateUserNickname} currentUserId={this.state.currentUserId}/>)}/>
             <Route path='/user' component={User}/>
             <Route
               path='/journals'
@@ -79,7 +79,7 @@ class App extends React.Component {
           <Footer/>
         </div>
       </BrowserRouter>
-    );
+    )
   }
 }
 

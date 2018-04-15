@@ -111,7 +111,7 @@ class NavbarComponent extends React.Component {
 
     return (
       <React.Fragment>
-          <Navbar left className="topNav">
+          <Navbar right className="topNav">
             <a href='/' className="brand-logo center">Bloom Diary</a>
             <ul>
               {/* <li><Link to='/' className="NavItem">Home</Link></li> */}
