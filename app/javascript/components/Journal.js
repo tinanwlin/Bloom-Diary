@@ -1,12 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-// // import styled from "styled-components"
 import { Modal, Input, Button } from "react-materialize"
-
 import happyFlower from "../../assets/images/flying.gif"
 import sadFlower from "../../assets/images/crying.gif" 
-
-
 import RichTextEditor from 'react-rte'
 
 export default class Journal extends React.Component {
