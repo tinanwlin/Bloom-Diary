@@ -1,4 +1,4 @@
-import { BrowserRouter, Route,Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import React from "react"
 import PropTypes from "prop-types"
@@ -20,13 +20,13 @@ const NoMatch = ({ location }) => (
 
 class App extends React.Component {
 
-  constructor (props){
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
-      currentUser:null,
-      currentUserId:null,
-      serverResponse:[{}]
+      currentUser: null,
+      currentUserId: null,
+      serverResponse: [{}]
     }
 
     this.setCurrentUser = this.setCurrentUser.bind(this);

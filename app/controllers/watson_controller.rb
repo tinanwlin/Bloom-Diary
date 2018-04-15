@@ -7,10 +7,12 @@ class WatsonController < ApplicationController
         require 'net/http'
         require 'uri'
         require 'json'
-        require 'sanitize'
+        require 'redcarpet'
+        require 'redcarpet/render_strip'
 
+        markdown = Redcarpet::Markdown.new(Redcarpet::Render::StripDown)
+        content = markdown.render(params['content'])
         
-        content = Sanitize.clean(params['content'])
         all_content = (params['content'])
         day = params['day'].to_i
         month = params['month'].to_i
