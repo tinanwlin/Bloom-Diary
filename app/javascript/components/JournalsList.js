@@ -3,6 +3,7 @@ import Moment from 'react-moment'
 // import flower from './flo.gif';
 
 
+
 class JournalsList extends React.Component {
 
   constructor (props) {
