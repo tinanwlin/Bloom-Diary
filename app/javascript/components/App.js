@@ -1,25 +1,25 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import ReactDOM from 'react-dom'
-import React from "react"
-import PropTypes from "prop-types"
-import NavbarComponent from "./Navbar"
-import Footer from "./Footer"
-import Profile from "./Profile"
-import Home from "./Home"
-import User from "./User"
+import React from 'react'
+import PropTypes from 'prop-types'
+import NavbarComponent from './Navbar'
+import Footer from './Footer'
+import Profile from './Profile'
+import Home from './Home'
+import User from './User'
 import JournalsList from './JournalsList'
-import Journal from './Journal';
+import Journal from './Journal'
 
-const NoMatch = ({ location }) => (
+const NoMatch = ({location}) => (
   <div>
     <h3>
-      No match for <code>{location.pathname}</code>
+      No match for
+      <code>{location.pathname}</code>
     </h3>
   </div>
-);
+)
 
 class App extends React.Component {
-
   constructor (props) {
     super(props)
 
@@ -29,32 +29,37 @@ class App extends React.Component {
       serverResponse: [{}]
     }
 
-    this.setCurrentUser = this.setCurrentUser.bind(this);
-    this.updateUserNickname = this.updateUserNickname.bind(this);
+    this.setCurrentUser = this
+      .setCurrentUser
+      .bind(this)
+    this.updateUserNickname = this
+      .updateUserNickname
+      .bind(this)
   }
 
-  setCurrentUser(sessionData){
-    this.setState({currentUser:sessionData});
+  setCurrentUser (sessionData) {
+    this.setState({currentUser: sessionData})
   }
 
-  componentDidMount(){
+  componentDidMount () {
     $.get('/me', (data) => {
-      console.log("/me:", data);
+      console.log('/me:', data)
       if (data) {
-        this.setState({currentUser:data.nickname, currentUserId:data.id});   
+        this.setState({currentUser: data.nickname, currentUserId: data.id})
       }
-    });
+    })
   }
 
-  updateUserNickname(newNickname){
-    this.setState({currentUser: newNickname});
+  updateUserNickname (newNickname) {
+    this.setState({currentUser: newNickname})
   }
 
   render () {
     console.log(this.state.currentUserId)
     return (
-        <BrowserRouter>
+      <BrowserRouter>
         <div>
+
             <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
             <Switch>
             <Route exact path='/' render={(props) => (<Home {...props} userSession={this.state.currentUser} currentUserId={this.state.currentUserId}/>)}/>
@@ -73,7 +78,5 @@ class App extends React.Component {
     );
   }
 }
-
-
 
 export default App

@@ -1,37 +1,42 @@
+
 import React, {Component} from 'react'
 import Moment from 'react-moment'
 import star from '../../assets/images/star.png'
 
 
-
 class JournalsList extends React.Component {
 
   constructor (props) {
-    super(props);
-
+    super(props)
     this.state = {
       listOfJournal: []
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
       if (data) {
-       this.setState({listOfJournal: data}); 
+        this.setState({listOfJournal: data})
       }
-    });
+    })
+    $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
+      if (data) {
+        this.setState({listOfJournal: data})
+      }
+    })
   }
   
   render() {
     return (
       //Main div starts here.
-      <div className="container"> 
+      <div className="container">
         
         <h1 className="journals-header">
           <div id="journals-title"> REFLECTIONS </div>
         </h1>
         
           {/* Flower */}
+
         <div id="position" className="sunflower">
           <div className="head">
             <div id="eye-1" className="eye"></div>
@@ -46,6 +51,7 @@ class JournalsList extends React.Component {
           <div className="vase"></div>
         </div>
         {/* end Flower */}
+
 
         {this.state.listOfJournal.map(journal =>
           

@@ -1,26 +1,13 @@
-// Theme Colors
-$grass-green: #4A7516;
-$jade-green: #4E9980;
-$tiffany-blue: #6CB1A2;
-$spring-grass: #54A52A;
-$mature-grass: #267342;
-$dirty-rose: #EABFB8;
-$pale-rose: #E7838C;
-$dirty-yellow: #F6B218;
-$pop-yellow: #FCC526;
-$light-soil: #EFD2B3;
-$beige-brown: #9B7255;
-$red-brown: #814E52;
-$bear-brown: #63342C;
-$soil-brown: #8D786D;
-$unicorn-purple: #BDCDEB;
+// Import Theme Colors
+@import 'variable';
 
-.main-title {
-  // display: inline-block;
-  // margin: 22px 230px;
-  font-family: 'Dancing Script', cursive;
-  font-weight: 700;
-}
+// .main-title {
+//   margin: 0 400px;
+//   width: 500px;
+//   text-align: center;
+//   font-family: 'Dancing Script', cursive;
+//   font-weight: 700;
+// }
 
 .entire-page {
   background-color: $unicorn-purple;
@@ -32,12 +19,13 @@ $unicorn-purple: #BDCDEB;
 }
 
 .topNav {
-  background-color: $grass-green;
+  background-color: $unicorn-purple;
   font-family: 'Merienda', cursive;
 }
 
 .brand-logo {
   margin-left: 0.5em;
+  font-family: 'Dancing Script', cursive;
 }
 
 canvas {

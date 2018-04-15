@@ -14,26 +14,31 @@ import MyComponent from './Chart.js';
 class Profile extends Component {
   constructor(props) {
     super(props);
-    // console.log(this.state.nickname);
     this.state = {
-      user: {}
+      user: {},
+      listOfJournal: []
     }
   }
+  
   componentDidMount() {
     $.get('/me', (user) => {
       if (user) {
-        // this.setState({ nickname: data.nickname, email: data.email })
         this.setState({ user });
       }
-    });
+    })
+    $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
+      if (data) {
+        this.setState({listOfJournal: data})
+      }
+    })
   }
-
+  
   updateUser = (name, value) => {
     const { user } = this.state;
     user[name] = value;
     this.setState({ user });
   }
-
+  
   submitUser = (event) => {
     const { user } = this.state;
     $.ajax({
@@ -46,9 +51,9 @@ class Profile extends Component {
       console.log('UPDATED USER: ', res)
     })
   }
-
+  
   render() {
-
+    console.log('listOfJournal', this.state.listOfJournal)
     const { user } = this.state;
     return (
       <div className="profilePage">
@@ -61,7 +66,7 @@ class Profile extends Component {
             </div>
           </Card>
         </Col>
-        < MyComponent />
+        < MyComponent listOfJournal={this.state.listOfJournal}/>
       </div>
     );
   }

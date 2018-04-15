@@ -13,7 +13,7 @@ constructor(props){
       <React.Fragment>
         <div className="container" style={{ display: "block", width: "100%", height: "50px" }}>
           <Sun className="sun" />
-          {/* <h3 className="main-title">Bloom Diary</h3> */}
+
           <form method="post" action="/watson" />
         </div>
         {(this.props.userSession!==null)?<Grid/>: ""}
