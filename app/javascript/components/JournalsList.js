@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Moment from 'react-moment';
-// import flower from './flo.gif';
+
 
 class JournalsList extends React.Component {
 
@@ -57,7 +57,6 @@ class JournalsList extends React.Component {
               <Moment className="journal-fromnow" fromNow>{journal.date}</Moment>
              
               </h5>
-              <img src={flower} alt="flower" className='jornal-flower' />
               <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
               <div className='jornal-footer'>
               <button className="journal-button"> Edit </button>
