@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import Moment from 'react-moment';
-import flower from './flo.gif';
+import React, {Component} from 'react'
+import Moment from 'react-moment'
+// import flower from './flo.gif';
 
 class JournalsList extends React.Component {
 
-  constructor (props){
+  constructor (props) {
     super(props);
 
     this.state = {
@@ -34,7 +34,7 @@ class JournalsList extends React.Component {
           <div className="head">
             <div id="eye-1" className="eye"></div>
             <div id="eye-2" className="eye"></div>
-            <div className="mouth"></div>
+            <div className="mout"></div>
           </div>
           <div className="petals"></div>
           <div className="trunk">
@@ -57,7 +57,7 @@ class JournalsList extends React.Component {
               <Moment className="journal-fromnow" fromNow>{journal.date}</Moment>
              
               </h5>
-              <img src={flower} alt="flower" className='jornal-flower' />
+              {/* <img src={flower} alt="flower" className='jornal-flower' /> */}
               <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
               <div className='jornal-footer'>
               <button className="journal-button"> Edit </button>
@@ -65,7 +65,7 @@ class JournalsList extends React.Component {
               </div>
             </div>
           </div>
-        )};
+        )}
       </div> //main Div Container here
     ); //return Bracket Ends here
   } //render Function ends here
