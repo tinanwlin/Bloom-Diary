@@ -57,11 +57,11 @@ class JournalsList extends React.Component {
               <Moment className="journal-date" format="MMMM Do YYYY">{journal.date}</Moment>
               <br/>
               <Moment className="journal-fromnow" fromNow>{journal.date}</Moment>
-             <img src={star} alt="star" className='jornal-star' />
+             <img src={star} alt="star" className='journal-star' />
 
               </h5>
               <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
-              <div className='jornal-footer'>
+              <div className='journal-footer'>
               <button className="journal-button"> Edit </button>
               <button className="journal-button"> Delete </button>
               </div>
