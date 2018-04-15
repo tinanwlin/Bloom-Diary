@@ -1,11 +1,13 @@
 
-import React, {Component} from 'react';
-import Moment from 'react-moment';
+import React, {Component} from 'react'
+import Moment from 'react-moment'
+import star from '../../assets/images/star.png'
+
 
 class JournalsList extends React.Component {
+
   constructor (props) {
     super(props)
-
     this.state = {
       listOfJournal: []
     }
@@ -30,7 +32,7 @@ class JournalsList extends React.Component {
       <div className="container">
         
         <h1 className="journals-header">
-          REFLECTIONS
+          <div id="journals-title"> REFLECTIONS </div>
         </h1>
         
           {/* Flower */}
@@ -39,7 +41,7 @@ class JournalsList extends React.Component {
           <div className="head">
             <div id="eye-1" className="eye"></div>
             <div id="eye-2" className="eye"></div>
-            <div className="mouth"></div>
+            <div className="mout"></div>
           </div>
           <div className="petals"></div>
           <div className="trunk">
@@ -61,16 +63,17 @@ class JournalsList extends React.Component {
               <Moment className="journal-date" format="MMMM Do YYYY">{journal.date}</Moment>
               <br/>
               <Moment className="journal-fromnow" fromNow>{journal.date}</Moment>
-             
+             <img src={star} alt="star" className='journal-star' />
+
               </h5>
               <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
-              <div className='jornal-footer'>
+              <div className='journal-footer'>
               <button className="journal-button"> Edit </button>
               <button className="journal-button"> Delete </button>
               </div>
             </div>
           </div>
-        )};
+        )}
       </div> //main Div Container here
     ); //return Bracket Ends here
   } //render Function ends here

@@ -47,6 +47,12 @@
   font-size: 15px;
   float: left;
 }
+.journal-star {
+  height: 40px;
+  width: 40px;
+  float: right;
+  margin-top: -30px;
+}
 
 .journal-button{
   background-color: #eee;
@@ -67,17 +73,16 @@
   opacity:0.5;
 }
 
-.jornal-flower {
-  height: 180px;
-  width: 120px;
-  float: right;
-  margin-top: -65px;
-}
 
-.jornal-footer {
+
+.journal-footer {
   border-top: 1px solid  rgb(238, 236, 236);
   padding: 10px;
   height: 40px;
+}
+
+#journals-title{
+  font-family: 'fantasy', sans-serif;
 }
 
 // Flower that dance
@@ -117,7 +122,7 @@
   right: 17px;
   animation: eye 4s linear infinite normal 0.5s;
 }
-.head .mouth {
+.head .mout {
   background: #ecf0f1;
   border-radius: 30px;
   bottom: 2px;
@@ -227,7 +232,7 @@ position:absolute;
 }
 @keyframes eye{
 	from { }
-  79% {height:5px;}
+    79% {height:5px;}
 	80% {height:0px;}
 	85%{height:5px;}
 	to {height:5px;}
@@ -241,16 +246,14 @@ position:absolute;
 }
 
 
+
 .calImg{
   height: 117px;
   position: relative;
   left: -24px;
 }
 
-// body {
-//   background:#ffffff;
-//   text-align:center;
-// }
+
 
 div .btn.createJournalButton{
   height: 120px;

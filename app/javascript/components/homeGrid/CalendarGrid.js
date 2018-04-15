@@ -177,7 +177,7 @@ class CalendarGrid extends React.Component {
         <div className="dayContainer">
         {week.map(day => (
           <li className="day" key={day.day}>
-            <Journal {...day} />
+            <Journal getData={this.getData} {...day} />
           </li>
         ))}
         </div>
