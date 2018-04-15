@@ -4,7 +4,7 @@ import { Button, Icon } from "react-materialize"
 import Journal from "../Journal"
 import chunk from 'lodash/chunk'
 import { list } from "postcss";
-
+import shelf from "../../../assets/images/shelf.png"
 class CalendarGrid extends React.Component {
 
 
@@ -174,11 +174,14 @@ class CalendarGrid extends React.Component {
 
     return daysByWeek.map((week, idx) =>
       <ul className="week" key={idx}>
+        <div className="dayContainer">
         {week.map(day => (
           <li className="day" key={day.day}>
             <Journal {...day} />
           </li>
         ))}
+        </div>
+        <img class="calendarShelf" src={shelf}/>
       </ul>
     );
   }

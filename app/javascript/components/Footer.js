@@ -13,6 +13,7 @@ class Footer extends React.Component {
       position: fixed;
       bottom: 0;
       width: 100%;
+      z-index:99999;
     `;
 
         return (

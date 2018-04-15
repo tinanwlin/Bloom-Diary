@@ -260,7 +260,7 @@ position:absolute;
 .calImg{
   height: 117px;
   position: relative;
-  left: -16px;
+  left: -24px;
 }
 
 // body {
@@ -276,4 +276,6 @@ div .btn.createJournalButton{
   display: inline-block;
   transition: background-color .2s ease-out;
   cursor: pointer;
+      z-index: 999;
+      position: relative;
 }
