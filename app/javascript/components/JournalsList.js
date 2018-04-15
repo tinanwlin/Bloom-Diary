@@ -28,7 +28,7 @@ class JournalsList extends React.Component {
       <div className="container"> 
         
         <h1 className="journals-header">
-          <div id="jounals-title"> REFLECTIONS </div>
+          <div id="journals-title"> REFLECTIONS </div>
         </h1>
         
           {/* Flower */}
