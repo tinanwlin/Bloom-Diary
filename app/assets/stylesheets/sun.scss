@@ -2,17 +2,18 @@ $powder-blue: #B5DBE0;
 $grey: #7D8184;
 $white: #F4F4F4;
 $yellow: #FFF054;
-// body {
-//   background: $grey;
-// }
+
+.sunContainer {
+ display: block;
+ width: 100%;
+ height: fit-content;
+ margin-top: 20px;
+}
 
 .box {
-  // position: relative;
-  // margin: auto;
   display: block;
   position: absolute;
   z-index:9999;
-  // margin-top: 15%;
   width: 600px;
   height: 200px;
   left:50px;
@@ -21,9 +22,7 @@ $yellow: #FFF054;
 /*sun*/
 
 .sun {
-  // position: absolute;
   background: $yellow;
-  // float: left;
   margin-left: 130px;
   top: 15%;
   right: 30%;
