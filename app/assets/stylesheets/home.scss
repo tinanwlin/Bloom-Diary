@@ -1,12 +1,13 @@
 // Import Theme Colors
 @import 'variable';
 
-.main-title {
-  // display: inline-block;
-  // margin: 22px 230px;
-  font-family: 'Dancing Script', cursive;
-  font-weight: 700;
-}
+// .main-title {
+//   margin: 0 400px;
+//   width: 500px;
+//   text-align: center;
+//   font-family: 'Dancing Script', cursive;
+//   font-weight: 700;
+// }
 
 .entire-page {
   background-color: $unicorn-purple;
@@ -24,6 +25,7 @@
 
 .brand-logo {
   margin-left: 0.5em;
+  font-family: 'Dancing Script', cursive;
 }
 
 canvas {
