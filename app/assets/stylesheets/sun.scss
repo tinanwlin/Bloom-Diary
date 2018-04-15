@@ -3,10 +3,11 @@ $grey: #7D8184;
 $white: #F4F4F4;
 $yellow: #FFF054;
 
-.sunContainter{
+.sunContainer {
  display: block;
  width: 100%;
- height: 50px;
+ height: fit-content;
+ margin-top: 20px;
 }
 
 .box {

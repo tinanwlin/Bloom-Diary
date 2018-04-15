@@ -9,7 +9,7 @@ export default class Home extends React.Component {
       // This will be where we add the Grid for the flowers
       <React.Fragment>
         <div className="sunContainer">
-          <Sun className="sun" />
+          <Sun className="sun"/>
         </div>
         {(this.props.userSession !== null) ? <Grid/> : '' }
 
