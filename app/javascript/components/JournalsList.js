@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import Moment from 'react-moment'
 import star from '../../assets/images/star.png'
 
+
+
 class JournalsList extends React.Component {
 
   constructor (props) {
@@ -58,7 +60,6 @@ class JournalsList extends React.Component {
              <img src={star} alt="star" className='jornal-star' />
 
               </h5>
-              
               <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
               <div className='jornal-footer'>
               <button className="journal-button"> Edit </button>
