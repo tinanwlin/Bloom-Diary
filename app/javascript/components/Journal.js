@@ -56,7 +56,7 @@ export default class Journal extends React.Component {
 
   get dateString() {
     const { year, month, day } = this.props;
-    return `${year}-${month}-${day}`;
+    return `${day}`;
   }
 
 
@@ -74,9 +74,6 @@ export default class Journal extends React.Component {
       buttonContent = img;
     } 
 
-
-
-    console.log('Journal::render');
     return (
       <React.Fragment>
         

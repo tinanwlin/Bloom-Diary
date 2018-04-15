@@ -3,24 +3,17 @@ import PropTypes from "prop-types"
 import Grid from "./homeGrid/CalendarGrid"
 import Sun from "./Sun"
 
-class Home extends React.Component {
-constructor(props){
-  super(props);
-}
+export default class Home extends React.Component {
   render () {
     return (
-      //This will be where we add the Grid for the flowers
+      // This will be where we add the Grid for the flowers
       <React.Fragment>
-        <div className="container" style={{ display: "block", width: "100%", height: "50px" }}>
+        <div className="sunContainer">
           <Sun className="sun" />
-
-          <form method="post" action="/watson" />
         </div>
-        {(this.props.userSession!==null)?<Grid/>: ""}
+        {(this.props.userSession !== null) ? <Grid/> : '' }
 
       </React.Fragment>
-    );
+    )
   }
 }
-
-export default Home
