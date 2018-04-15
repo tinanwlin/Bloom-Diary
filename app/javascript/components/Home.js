@@ -1,7 +1,6 @@
-import React from "react"
-import PropTypes from "prop-types"
-import Grid from "./homeGrid/CalendarGrid"
-import Sun from "./Sun"
+import React from 'react'
+import Grid from './homeGrid/CalendarGrid'
+import Sun from './Sun'
 
 export default class Home extends React.Component {
   render () {
