@@ -1,4 +1,6 @@
-import React, {Component} from 'react'
+
+import React, {Component} from 'react';
+import Moment from 'react-moment';
 
 class JournalsList extends React.Component {
   constructor (props) {
@@ -32,29 +34,40 @@ class JournalsList extends React.Component {
         </h1>
         
           {/* Flower */}
-          <div id="position" className="sunflower">
+
+        <div id="position" className="sunflower">
           <div className="head">
-          <div id="eye-1" className="eye"></div>
-          <div id="eye-2" className="eye"></div>
-          <div className="mouth"></div>
-        </div>
+            <div id="eye-1" className="eye"></div>
+            <div id="eye-2" className="eye"></div>
+            <div className="mouth"></div>
+          </div>
           <div className="petals"></div>
           <div className="trunk">
-          <div className="left-branch"></div>
-          <div className="right-branch"></div>
+            <div className="left-branch"></div>
+            <div className="right-branch"></div>
+          </div>
+          <div className="vase"></div>
         </div>
         {/* end Flower */}
-        
-      
-        <div className="vase"></div>
-        </div>
+
+
         {this.state.listOfJournal.map(journal =>
-          <div key={journal.id} className="journals-container">
-            <div className="journal">
+          
+          <div key={journal.id}>
+            
+            <div className="journals-container">
+            
               <h5  className="journal-header individual-journal">
-                {journal.date}
+              <Moment className="journal-date" format="MMMM Do YYYY">{journal.date}</Moment>
+              <br/>
+              <Moment className="journal-fromnow" fromNow>{journal.date}</Moment>
+             
               </h5>
-                <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
+              <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
+              <div className='jornal-footer'>
+              <button className="journal-button"> Edit </button>
+              <button className="journal-button"> Delete </button>
+              </div>
             </div>
           </div>
         )};

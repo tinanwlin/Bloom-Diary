@@ -10,9 +10,12 @@ $yellow: #FFF054;
   // position: relative;
   // margin: auto;
   display: block;
+  position: absolute;
+  z-index:9999;
   // margin-top: 15%;
   width: 600px;
-  height: 0;
+  height: 200px;
+  left:50px;
 }
 
 /*sun*/
@@ -194,7 +197,7 @@ $yellow: #FFF054;
   background: $white;
   width: 250px;
   height: 100px;
-  top: 20%;
+  top: 45%;
   
   border-radius: 100px;
 }

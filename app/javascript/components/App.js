@@ -59,27 +59,23 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <NavbarComponent
-            setUser={this.setCurrentUser}
-            userSession={this.state.currentUser}/>
-          <Switch>
-            <Route
-              exact
-              path='/'
-              render={(props) => (<Home {...props} userSession={this.state.currentUser}/>)}/>
-            <Route
-              path='/profile'
-              render={(props) => (<Profile {...props} updateUserNickname={this.updateUserNickname} currentUserId={this.state.currentUserId}/>)}/>
-            <Route path='/user' component={User}/>
-            <Route
-              path='/journals'
-              render={(routeProps) => (<JournalsList {...routeProps} currentUserId={this.state.currentUserId}/>)}/>
-            <Route component={NoMatch}/>
-          </Switch>
-          <Footer/>
-        </div>
-      </BrowserRouter>
-    )
+
+            <NavbarComponent setUser={this.setCurrentUser} userSession={this.state.currentUser}/>
+            <Switch>
+            <Route exact path='/' render={(props) => (<Home {...props} userSession={this.state.currentUser} currentUserId={this.state.currentUserId}/>)}/>
+              <Route path='/profile' render={(props) => (
+                <Profile {...props} updateUserNickname={this.updateUserNickname}/>
+              )}/>
+              <Route path='/user' component={User} />
+              <Route path='/journals' render={(routeProps) => (
+                <JournalsList {...routeProps} currentUserId={this.state.currentUserId}/>
+              )}/>
+              <Route component={NoMatch} />
+            </Switch>
+            <Footer />
+          </div>
+        </BrowserRouter>
+    );
   }
 }
 

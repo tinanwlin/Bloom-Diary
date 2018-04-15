@@ -11,11 +11,13 @@ constructor(props){
     return (
       //This will be where we add the Grid for the flowers
       <React.Fragment>
-        <div className="container" style={{ display: "block", width: "100%", height: "180px" }}>
+        <div className="container" style={{ display: "block", width: "100%", height: "50px" }}>
           <Sun className="sun" />
+
           <form method="post" action="/watson" />
         </div>
         {(this.props.userSession!==null)?<Grid/>: ""}
+
       </React.Fragment>
     );
   }
