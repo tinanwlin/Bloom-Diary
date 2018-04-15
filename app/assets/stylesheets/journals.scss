@@ -63,6 +63,12 @@ $black-green: #30511D;
   font-size: 15px;
   float: left;
 }
+.jornal-star {
+  height: 40px;
+  width: 40px;
+  float: right;
+  margin-top: -30px;
+}
 
 .journal-button{
   background-color: #eee;
@@ -83,17 +89,16 @@ $black-green: #30511D;
   opacity:0.5;
 }
 
-.jornal-flower {
-  height: 180px;
-  width: 120px;
-  float: right;
-  margin-top: -65px;
-}
+
 
 .jornal-footer {
   border-top: 1px solid  rgb(238, 236, 236);
   padding: 10px;
   height: 40px;
+}
+
+#jounals-title{
+  font-family: 'fantasy', sans-serif;
 }
 
 // Flower that dance
