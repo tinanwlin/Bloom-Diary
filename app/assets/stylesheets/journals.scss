@@ -58,7 +58,7 @@
   background-color: #eee;
   border: none;
   color: black;
-  padding: 8px 24px 7px 24px;
+  padding: 7px 24px 5px 24px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -68,6 +68,7 @@
   margin-right: 30px;
   transition:all 0.3s ease;
   opacity:1;
+  
 }
 .journal-button:hover{
   opacity:0.5;
@@ -79,6 +80,7 @@
   border-top: 1px solid  rgb(238, 236, 236);
   padding: 10px;
   height: 40px;
+  padding-left: 36%
 }
 
 #journals-title{
