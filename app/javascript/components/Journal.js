@@ -74,7 +74,7 @@ export default class Journal extends React.Component {
       <React.Fragment>
         
         <Modal
-          header={ `${this.dateString} :: Journal` }
+          header={ `${this.props.year}-${this.props.month}-${this.props.day}` }
           id={this.uniqueId}
           trigger={
             <Button className="createJournalButton">
