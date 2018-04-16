@@ -57,9 +57,14 @@ class Profile extends Component {
     const { user } = this.state;
     return (
       <div className="profilePage">
-        <div className='section'>
-          < MyComponent listOfJournal={this.state.listOfJournal}/>
-        </div>
+        <div className="row">
+            <div className="card ">
+              <div className="card-content white-text">
+                <span className="card-title">Visualization</span>
+                < MyComponent listOfJournal={this.state.listOfJournal}/>
+              </div>
+            </div>
+          </div>
         <div className="profileCard section">
           <Card className="profileContent" title="Profile">
             <Input className="profileNickname" s={6} label="Nickname" validate placeholder={user.nickname} value={user.nickname} onChange={e => this.updateUser('nickname', e.target.value) } alt="nickname"/>

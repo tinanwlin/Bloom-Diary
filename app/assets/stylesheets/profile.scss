@@ -3,15 +3,22 @@
 
 
 .profileCard {
-  margin: 30px 350px;
+  margin: auto;
   width: 500px;
 }
 
 .card-content {
   color: black;
   background-color: lightgray;
+  padding: 0;
 }
 
 .btn {
   background-color: darkgray;
 }
+
+.row {
+  width: 60%;
+  margin-top: 30px;
+}
+
