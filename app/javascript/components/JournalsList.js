@@ -1,5 +1,5 @@
 
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import Moment from 'react-moment'
 import star from '../../assets/images/star.png'
 
@@ -25,6 +25,10 @@ class JournalsList extends React.Component {
   }
 
   render () {
+
+    
+    
+
     return (
       // Main div starts here.
       <div className="container">
@@ -60,6 +64,15 @@ class JournalsList extends React.Component {
                 <br/>
                 <Moment className="journal-fromnow" fromNow>{journal.date}</Moment>
                 <img src={star} alt="star" className='journal-star' />
+
+                { journal.sentiment_score > 0 && journal.sentiment_score < 0.3
+                  && <img src={star} alt="star" className='journal-star' />
+                }
+
+                { journal.sentiment_score >= 0.3
+                  && <Fragment><img src={star} alt="star" className='journal-star' /> <img src={star} alt="star" className='journal-star' /></Fragment>
+                }
+
 
               </h5>
               <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
