@@ -78,6 +78,7 @@ export default class Journal extends React.Component {
       buttonContent = img;
     } 
 
+    console.log("fuck", this.state.content);
     return (
       <React.Fragment>
         
