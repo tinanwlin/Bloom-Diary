@@ -45,8 +45,20 @@ export default class Journal extends React.Component {
 
   }
 
-  get uniqueId() {
-    return `journalModal-${this.props.day}`;
+  get uniqueId () {
+      return `journalModal-${this.props.day}`;
+  }
+
+  get uniqueCreateButton () {
+    let date = new Date();
+    let yyyy = date.getFullYear();
+    let mm = date.getMonth() + 1;
+    let dd = date.getDate();
+    if (this.props.day === dd && this.props.month === mm && this.props.year === yyyy ) {
+      return `createJournal-today`
+    } else {
+      return `createJournal-${this.props.day}`;
+    }  
   }
 
 
@@ -76,7 +88,7 @@ export default class Journal extends React.Component {
         img = <img className="calImg" src={ happyFlower } alt="" />;
       }
       buttonContent = img;
-    } 
+    }
 
     return (
       <React.Fragment>
@@ -85,7 +97,8 @@ export default class Journal extends React.Component {
           header={ `${this.props.year}-${this.props.month}-${this.props.day}` }
           id={this.uniqueId}
           trigger={
-            <Button className="createJournalButton">
+            <Button className="createJournalButton"
+            id = {this.uniqueCreateButton}>
               {buttonContent}
             </Button>
           }
