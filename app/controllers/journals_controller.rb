@@ -3,8 +3,12 @@ class JournalsController < ApplicationController
   
 
   def index
-    @all_journals = Journal.where(user_id: @current_user.id)
+    @all_journals = Journal.where(user_id: @current_user.id).order(date: :desc)
     render :json => @all_journals
+  end
+
+  def destroy
+    Journal.destroy(params[:id])
   end
   
 end
