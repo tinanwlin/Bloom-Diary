@@ -59,7 +59,15 @@ export default class Journal extends React.Component {
   render() {
 
     let img;
+    let today = new Date();
+    let journalToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let buttonDay = `${this.props.year}-${this.props.month}-${this.props.day}`;
     let buttonContent = this.dateString;
+    if (journalToday === buttonDay){
+      buttonContent = this.dateString + "\n" + "Today";
+    }
+
+
     if (this.state.data) {
       let sentiment_score = this.state.data && this.state.data.sentiment_score;
       if (sentiment_score < 0) {
@@ -74,7 +82,7 @@ export default class Journal extends React.Component {
       <React.Fragment>
         
         <Modal
-          header={ `${this.dateString} :: Journal` }
+          header={ `${this.props.year}-${this.props.month}-${this.props.day}` }
           id={this.uniqueId}
           trigger={
             <Button className="createJournalButton">
