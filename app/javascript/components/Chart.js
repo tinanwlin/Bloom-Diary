@@ -159,7 +159,6 @@ class MyComponent extends Component {
           <button type="submit">Let's Compare</button>
         </form>
 
-
       </React.Fragment>
     )
   }

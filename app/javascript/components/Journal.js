@@ -15,6 +15,7 @@ export default class Journal extends React.Component {
       content: RichTextEditor.createValueFromString(newProps.content || "", 'html'),
       data: newProps.data || null
     });
+
   }
 
   onChange = (content) => {
