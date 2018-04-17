@@ -16,3 +16,21 @@
 .btn {
   background-color: darkgray;
 }
+
+form.chartForm {
+  height: 150px;
+  width: 400px;
+  text-align: center;
+  float: right;
+  margin-top: 100px;
+  margin-right: 50px;
+}
+
+form.chartForm label{
+  color: black;
+}
+
+
+form.chartForm input{
+  text-align: center;
+}
