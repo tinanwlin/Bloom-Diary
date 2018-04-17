@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button } from "react-materialize"
 var RadarChart = require('react-chartjs').Radar
 
 class MyComponent extends Component {
@@ -147,16 +148,16 @@ class MyComponent extends Component {
           redraw />
 
         <form className="chartForm" onSubmit={this.handleSubmit}>
-          <label>
+          <label className="label1">
             How many days from today?
             <input name="emotions1" type="text" value={this.state.days.value1} onChange={e => this.handleChange('value1', e.target.value)} />
           </label>
           <br />
-          <label>
+          <label className="label2">
             How many days from today?
             <input name="emotions2" type="text" value={this.state.days.value2} onChange={e => this.handleChange('value2', e.target.value)} />
           </label>
-          <button type="submit">Let's Compare</button>
+          <Button type="submit">Let's Compare</Button>
         </form>
 
 
