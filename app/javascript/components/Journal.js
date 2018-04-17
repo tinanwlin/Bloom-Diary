@@ -51,8 +51,10 @@ export default class Journal extends React.Component {
 
   get uniqueCreateButton () {
     let date = new Date();
-    let today = date.getDate();
-    if (this.props.day === today) {
+    let yyyy = date.getFullYear();
+    let mm = date.getMonth() + 1;
+    let dd = date.getDate();
+    if (this.props.day === dd && this.props.month === mm && this.props.year === yyyy ) {
       return `createJournal-today`
     } else {
       return `createJournal-${this.props.day}`;
