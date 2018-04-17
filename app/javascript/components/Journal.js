@@ -30,7 +30,6 @@ export default class Journal extends React.Component {
     const { content } = this.state;
 
 
-    console.log("click journal submit!");
     
     $.post("/watson", { content: content.toString('markdown'), year, month, day }, (response) => {
       console.log("response:", response);
