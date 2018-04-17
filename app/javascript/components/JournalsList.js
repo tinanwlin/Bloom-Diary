@@ -2,6 +2,8 @@
 import React, {Component, Fragment} from 'react'
 import Moment from 'react-moment'
 import star from '../../assets/images/star.png'
+import { Modal, Input, Button } from "react-materialize"
+import RichTextEditor from 'react-rte'
 
 class JournalsList extends React.Component {
   constructor (props) {
@@ -36,6 +38,8 @@ class JournalsList extends React.Component {
 
 
   render () {
+
+    const buttonStyle = { backgroundColor: 'rgb(120, 205, 235)', float: 'left', padding: '-10px', marginLeft: '10px'};
     return (
       // Main div starts here.
       <div className="container">
@@ -72,11 +76,11 @@ class JournalsList extends React.Component {
                 <Moment className="journal-fromnow" fromNow>{journal.date}</Moment>
                 <img src={star} alt="star" className='journal-star' />
 
-                { journal.sentiment_score > 0 && journal.sentiment_score < 0.3
+                { journal.sentiment_score > 0 && journal.sentiment_score < 0.5
                   && <img src={star} alt="star" className='journal-star' />
                 }
 
-                { journal.sentiment_score >= 0.3
+                { journal.sentiment_score >= 0.5
                   && <Fragment><img src={star} alt="star" className='journal-star' /> <img src={star} alt="star" className='journal-star' /></Fragment>
                 }
 
@@ -84,8 +88,28 @@ class JournalsList extends React.Component {
               </h5>
               <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
               <div className='journal-footer'>
-                <button className="journal-button"> Edit </button>
-                <button className="journal-button" onClick={this.deleteJournal.bind(this, journal.id)} > Delete </button>
+              <Modal
+                  header={ journal.date }
+                  trigger={
+                    <Button style={buttonStyle}> EDIT
+                      
+                    </Button>
+                  }
+                  actions={
+                    <React.Fragment>
+                      <Button >Edit Journal</Button>
+                      <Button >Close</Button>
+                    </React.Fragment>
+                  }
+                >
+                value={journal.content}
+                  {/* <RichTextEditor
+                    value={journal.content}
+                    /> */}
+            </Modal>
+
+                {/* <button className="journal-button"> Edit </button> */}
+                <button  className="btn" style={buttonStyle} onClick={this.deleteJournal.bind(this, journal.id)} > DELETE </button>
               </div>
             </div>
           </div>
