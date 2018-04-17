@@ -17,23 +17,30 @@ class JournalsList extends React.Component {
         this.setState({listOfJournal: data})
       }
     })
-    $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
-      if (data) {
-        this.setState({listOfJournal: data})
-      }
-    })
   }
 
+  deleteJournal(id) {
+    const result = window.confirm("Do you really want delete it?")
+    if (result){    
+      $.ajax({url: `/users/${this.props.currentUserId}/journals/${id}`, type: 'DELETE',
+      success: () => {
+        $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
+          if (data) {
+            this.setState({listOfJournal: data})
+          }
+        })
+        }
+      })
+    }
+  }
+
+
   render () {
-
-    
-    
-
     return (
       // Main div starts here.
       <div className="container">
         <h1 className="journals-header">
-          <div id="journals-title"> REFLECTIONS </div>
+          <div id="journals-title"> Reflections </div>
         </h1>
 
         {/* Flower */}
@@ -78,7 +85,7 @@ class JournalsList extends React.Component {
               <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
               <div className='journal-footer'>
                 <button className="journal-button"> Edit </button>
-                <button className="journal-button"> Delete </button>
+                <button className="journal-button" onClick={this.deleteJournal.bind(this, journal.id)} > Delete </button>
               </div>
             </div>
           </div>
