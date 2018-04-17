@@ -5,6 +5,13 @@ import star from '../../assets/images/star.png'
 import { Modal, Input, Button } from "react-materialize"
 import RichTextEditor from 'react-rte'
 
+function fancifyContent(datum, content) {
+  console.log("fancy before", datum && datum.id, content)
+  datum.content = RichTextEditor.createValueFromString(content || '', 'html')
+  console.log("fancy after")
+  return datum
+}
+
 class JournalsList extends React.Component {
   constructor (props) {
     super(props)
@@ -16,33 +23,41 @@ class JournalsList extends React.Component {
   componentDidMount () {
     $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
       if (data) {
-        this.setState({listOfJournal: data})
+        this.setState({listOfJournal: data.map(datum => fancifyContent(datum, datum.content))})
       }
     })
   }
 
-  deleteJournal(id) {
-    const result = window.confirm('Do you really want delete it?');
+  deleteJournal (id) {
+    const result = window.confirm('Do you really want delete it?')
     if (result) {
-      $.ajax({url: `/users/${this.props.currentUserId}/journals/${id}`, type: 'DELETE',
-      success: () => {
-        $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
-          if (data) {
-            this.setState({listOfJournal: data})
-          }
-        })
+      $.ajax({
+        url: `/users/${this.props.currentUserId}/journals/${id}`,
+        type: 'DELETE',
+        success: () => {
+          $.get(`/users/${this.props.currentUserId}/journals`, (data) => {
+            if (data) {
+              this.setState({listOfJournal: data.map(datum => fancifyContent(datum, datum.content))})
+            }
+          })
         }
       })
     }
   }
 
-  onJournalChange (journalId, event) {
-    console.log("update journal data for journal id", journalId, "to this:", event)
+  onJournalChange (journalId, content) {
+    console.log("update journal data for journal id", journalId, "to this:", content)
+    // this.state.listOfJournal
+    //   .filter(datum => datum.id === journalId)
+    //   .map(datum => fancifyContent(datum, content))
   }
 
-  render (){
+  // closeModal = () => {
+  //   $('#' + this.uniqueId).modal('close');
+  // }
 
-    const buttonStyle = { backgroundColor: 'rgb(120, 205, 235)', float: 'left', padding: '-10px', marginLeft: '10px'};
+  render () {
+    const buttonStyle = {backgroundColor: 'rgb(120, 205, 235)', float: 'left', padding: '-10px', marginLeft: '10px'}
     return (
       // Main div starts here.
       <div className="container">
@@ -100,15 +115,14 @@ class JournalsList extends React.Component {
                   }
                   actions={
                     <React.Fragment>
-                      <Button >OK</Button>
-                      <Button >Close</Button>
+                      {/* <Button onClick={this.handleJournalSubmit}>OK</Button>
+                      <Button onClick={this.closeModal} flat={true}>Close</Button> */}
                     </React.Fragment>
                   }
                 >
                 {/* {journal.content} */}
                   <RichTextEditor
-                    value={RichTextEditor.createValueFromString(journal.content || "", 'html')}
-                    onChange={this.onJournalChange.bind(this, journal.id)}
+                    value={journal.content}
                     />
             </Modal>
 
@@ -124,3 +138,8 @@ class JournalsList extends React.Component {
 } // class Ends here.
 
 export default JournalsList
+
+
+
+
+//                         onChange={this.onJournalChange.bind(this, journal.id)}
