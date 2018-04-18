@@ -12,6 +12,7 @@ class WatsonController < ApplicationController
 
         markdown = Redcarpet::Markdown.new(Redcarpet::Render::StripDown)
         content = markdown.render(params['content'])
+        puts content
         
         all_content = (params['content'])
         day = params['day'].to_i

@@ -12,7 +12,7 @@ export default class Journal extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.setState({
-      content: RichTextEditor.createValueFromString(newProps.content || "", 'html'),
+      content: RichTextEditor.createValueFromString(newProps.content || "", 'markdown'),
       data: newProps.data || null
     });
   }
