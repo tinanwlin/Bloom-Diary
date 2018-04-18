@@ -89,7 +89,6 @@ class NavbarComponent extends React.Component {
             $('#loginEmail').val('')
             $('#loginPassword').val('')
             $('#loginModal').modal('open')
-            // console.log('fired! @login')
           }}>Login</NavItem>
           <NavItem onClick={() => {
             $('#registerEmail').val('')
