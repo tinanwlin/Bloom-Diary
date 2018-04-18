@@ -114,7 +114,7 @@ class NavbarComponent extends React.Component {
         <Navbar right className="topNav">
           <a href='/' className="brand-logo center">Bloom Diary</a>
           <ul>
-            {/* <li><Link to='/' className="NavItem">Home</Link></li> */}
+            <li><Link to='/' className="NavItem">Home</Link></li>
             <li><Link to='/journals'>Journals</Link></li>
             <li><Link to='/profile'>Profile</Link></li>
             {this.navManagement(this.props.userSession)}

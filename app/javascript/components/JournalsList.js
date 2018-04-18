@@ -8,6 +8,7 @@ import RichTextEditor from 'react-rte'
 class JournalsList extends React.Component {
   constructor (props) {
     super(props)
+
     this.state = {
       listOfJournal: []
     }
@@ -52,6 +53,7 @@ class JournalsList extends React.Component {
 
         {/* Flower */}
 
+        {/* Flower */}
         <div id="position" className="sunflower">
           <div className="head">
             <div id="eye-1" className="eye"></div>
@@ -68,7 +70,6 @@ class JournalsList extends React.Component {
         {/* end Flower */}
 
         {this.state.listOfJournal.map(journal =>
-
           <div key={journal.id}>
 
             <div className="journals-container">

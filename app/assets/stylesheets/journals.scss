@@ -13,6 +13,7 @@
 }
 
 
+
 .journals-container {
   margin: 6%;
   margin-right: 10%;
@@ -276,7 +277,7 @@ div .btn.createJournalButton{
 }
 
 #createJournal-today {
-  background-color: black;
+  background-color: $dirty-yellow;
 }
 
 .RichTextEditor__editor___1QqIU .DraftEditor-root .DraftEditor-editorContainer {
