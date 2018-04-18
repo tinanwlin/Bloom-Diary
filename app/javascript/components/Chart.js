@@ -32,7 +32,11 @@ class MyComponent extends Component {
       emotions.disgust = this.state.listOfJournal[0].disgust
       emotions.sadness = this.state.listOfJournal[0].sadness
       emotions.fear = this.state.listOfJournal[0].fear
+      emotions.date = this.state.listOfJournal[0].date
     }
+
+console.log(this.state.listOfJournal[0])
+
 
     return (<RadarChart
       data={{
@@ -41,7 +45,7 @@ class MyComponent extends Component {
         ],
         datasets: [
           {
-            label: 'Yesterday',
+            label: emotions.date,
             fillColor: 'rgba(136, 135, 255,0.2)',
             strokeColor: 'rgba(136, 135, 255,1)',
             pointColor: 'rgba(136, 135, 255,1)',
