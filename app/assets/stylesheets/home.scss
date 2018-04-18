@@ -29,7 +29,21 @@
 }
 
 .modal-content {
- height: 348px; 
+ height: fit-content; 
+}
+
+.modal-footer {
+  button.btn.submitJournalButton{
+    margin-right: 20px;
+  }
+}
+
+#loginSubmit{
+  margin-right: 20px;
+}
+
+#registerSubmit {
+  margin-right: 20px;
 }
 
 .RichTextEditor__editor___1QqIU .DraftEditor-root .DraftEditor-editorContainer {

@@ -103,7 +103,7 @@ export default class Journal extends React.Component {
           }
           actions={
             <React.Fragment>
-              <Button onClick={this.handleJournalSubmit}>Create Journal</Button>
+              <Button className="submitJournalButton" onClick={this.handleJournalSubmit}>Create Journal</Button>
               <Button onClick={this.closeModal} flat={true}>Close</Button>
             </React.Fragment>
           }
