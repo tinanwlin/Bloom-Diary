@@ -108,7 +108,6 @@ class NavbarComponent extends React.Component {
 
 
   render () {
-    
     return (
       <React.Fragment>
           <Navbar right className="topNav">

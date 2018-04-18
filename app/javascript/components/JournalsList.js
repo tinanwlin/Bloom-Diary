@@ -89,7 +89,12 @@ class JournalsList extends React.Component {
 
 
               </h5>
-              <div className="journal-content" dangerouslySetInnerHTML={{ __html: journal.content }} />
+              <div className="journal-content"  />
+             <RichTextEditor className="readOnlyView"
+              value={RichTextEditor.createValueFromString(journal.content || "", 'markdown')}
+              readOnly={true}
+              />
+              {/*dangerouslySetInnerHTML={{ __html: journal.content }}*/}
               <div className='journal-footer'>
               <Modal
                   header={ journal.date }
@@ -107,7 +112,7 @@ class JournalsList extends React.Component {
                 >
                 {/* {journal.content} */}
                   <RichTextEditor
-                    value={RichTextEditor.createValueFromString(journal.content || "", 'html')}
+                    value={RichTextEditor.createValueFromString(journal.content || "", 'markdown')}
                     onChange={this.onJournalChange.bind(this, journal.id)}
                     />
             </Modal>

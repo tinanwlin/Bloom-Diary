@@ -1,6 +1,7 @@
 import React from 'react'
 import Grid from './homeGrid/CalendarGrid'
 import Sun from './Sun'
+import NotLogged from './NotLogged'
 
 export default class Home extends React.Component {
   render () {
@@ -10,7 +11,7 @@ export default class Home extends React.Component {
         <div className="sunContainer">
           <Sun className="sun"/>
         </div>
-        {(this.props.userSession !== null) ? <Grid/> : '' }
+        {(this.props.userSession !== null) ? <Grid/> : <NotLogged/> }
 
       </React.Fragment>
     )
