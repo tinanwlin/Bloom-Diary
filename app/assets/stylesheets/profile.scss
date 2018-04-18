@@ -17,8 +17,26 @@
   background-color: darkgray;
 }
 
-.row {
-  width: 60%;
-  margin-top: 30px;
+form.chartForm {
+  height: 150px;
+  width: 400px;
+  text-align: center;
+  float: right;
+  margin-top: 100px;
+  margin-right: 50px;
 }
 
+label.label1{
+  color: #8887FF;
+  font-size: 20px;
+}
+
+label.label2{
+  color: #97BBCD;
+  font-size: 20px;
+}
+
+
+form.chartForm input{
+  text-align: center;
+}

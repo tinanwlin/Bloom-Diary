@@ -58,9 +58,8 @@ class Profile extends Component {
     return (
       <div className="profilePage">
         <div className="row">
-            <div className="card ">
+            <div className="card">
               <div className="card-content white-text">
-                <span className="card-title">Visualization</span>
                 < MyComponent listOfJournal={this.state.listOfJournal}/>
               </div>
             </div>

@@ -12,7 +12,7 @@ export default class Journal extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.setState({
-      content: RichTextEditor.createValueFromString(newProps.content || "", 'html'),
+      content: RichTextEditor.createValueFromString(newProps.content || "", 'markdown'),
       data: newProps.data || null
     });
   }
@@ -30,7 +30,6 @@ export default class Journal extends React.Component {
     const { content } = this.state;
 
 
-    console.log("click journal submit!");
     
     $.post("/watson", { content: content.toString('markdown'), year, month, day }, (response) => {
       console.log("response:", response);
@@ -45,8 +44,20 @@ export default class Journal extends React.Component {
 
   }
 
-  get uniqueId() {
-    return `journalModal-${this.props.day}`;
+  get uniqueId () {
+      return `journalModal-${this.props.day}`;
+  }
+
+  get uniqueCreateButton () {
+    let date = new Date();
+    let yyyy = date.getFullYear();
+    let mm = date.getMonth() + 1;
+    let dd = date.getDate();
+    if (this.props.day === dd && this.props.month === mm && this.props.year === yyyy ) {
+      return `createJournal-today`
+    } else {
+      return `createJournal-${this.props.day}`;
+    }  
   }
 
 
@@ -59,7 +70,15 @@ export default class Journal extends React.Component {
   render() {
 
     let img;
+    let today = new Date();
+    let journalToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let buttonDay = `${this.props.year}-${this.props.month}-${this.props.day}`;
     let buttonContent = this.dateString;
+    if (journalToday === buttonDay){
+      buttonContent = this.dateString + "\n" + "Today";
+    }
+
+
     if (this.state.data) {
       let sentiment_score = this.state.data && this.state.data.sentiment_score;
       if (sentiment_score < 0) {
@@ -68,22 +87,23 @@ export default class Journal extends React.Component {
         img = <img className="calImg" src={ happyFlower } alt="" />;
       }
       buttonContent = img;
-    } 
+    }
 
     return (
       <React.Fragment>
         
         <Modal
-          header={ `${this.dateString} :: Journal` }
+          header={ `${this.props.year}-${this.props.month}-${this.props.day}` }
           id={this.uniqueId}
           trigger={
-            <Button className="createJournalButton">
+            <Button className="createJournalButton"
+            id = {this.uniqueCreateButton}>
               {buttonContent}
             </Button>
           }
           actions={
             <React.Fragment>
-              <Button onClick={this.handleJournalSubmit}>Create Journal</Button>
+              <Button className="submitJournalButton" onClick={this.handleJournalSubmit}>Create Journal</Button>
               <Button onClick={this.closeModal} flat={true}>Close</Button>
             </React.Fragment>
           }

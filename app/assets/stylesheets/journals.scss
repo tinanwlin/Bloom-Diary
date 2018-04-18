@@ -20,7 +20,7 @@
   height: fit-content;
   border-radius: 10px;
   border: 1px solid #D0D0D0;
-  background-color: #6CB1A2;
+  background-color: $unicorn-purple;
   
 }
 
@@ -56,10 +56,10 @@
 }
 
 .journal-button{
-  background-color: #eee;
+  background-color: $unicorn-purple;
   border: none;
   color: black;
-  padding: 8px 24px 7px 24px;
+  padding: 7px 24px 5px 24px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -69,7 +69,10 @@
   margin-right: 30px;
   transition:all 0.3s ease;
   opacity:1;
+  float: left;
 }
+
+
 .journal-button:hover{
   opacity:0.5;
 }
@@ -78,12 +81,13 @@
 
 .journal-footer {
   border-top: 1px solid  rgb(238, 236, 236);
-  padding: 10px;
+  padding: 0px;
   height: 40px;
+  padding-left: 36%
 }
 
 #journals-title{
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Merienda', cursive;
 }
 
 // Flower that dance
@@ -247,24 +251,29 @@ position:absolute;
 	100% {left:34px;transform:rotate(-5deg);}
 }
 
-
-
 .calImg{
   height: 117px;
   position: relative;
-  left: -24px;
+  left: -28px;
 }
-
-
 
 div .btn.createJournalButton{
   height: 120px;
   width: 120px;
   color: white;
-  border: 1px solid white;
+  border: 1px solid #62efe0;
   display: inline-block;
+  border-radius: 25%;
   transition: background-color .2s ease-out;
   cursor: pointer;
-      z-index: 999;
-      position: relative;
+  z-index: 999;
+  position: relative;
+}
+
+#createJournal-today {
+  background-color: $dirty-yellow;
+}
+
+.RichTextEditor__editor___1QqIU .DraftEditor-root .DraftEditor-editorContainer {
+  height: 102px;
 }

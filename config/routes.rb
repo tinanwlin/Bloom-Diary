@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   #namespace :api do
   resources :users, only: [:create, :update] do
-    resources :journals, only: [:index, :create, :show]
+    resources :journals, only: [:index, :create, :show, :destroy]
   end
   
   resource :sessions, only: [:create, :destroy]  
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   
    #Route to test API
    post '/watson' => 'watson#natural_language_understanding'
+  #  post '/users/:user_id/journals/:journals_id/delete' => 'journals#delete'
    match "*stuff",to: "homes#index",via: :all
   
 

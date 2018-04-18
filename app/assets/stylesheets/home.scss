@@ -28,6 +28,32 @@
   font-family: 'Dancing Script', cursive;
 }
 
+.modal-content {
+ height: fit-content; 
+}
+
+.modal-footer {
+  button.btn.submitJournalButton{
+    margin-right: 20px;
+  }
+}
+
+#loginSubmit{
+  margin-right: 20px;
+}
+
+#registerSubmit {
+  margin-right: 20px;
+}
+
+.RichTextEditor__editor___1QqIU .DraftEditor-root .DraftEditor-editorContainer {
+  height: 202px;
+}
+
+a.waves-effect.waves.btn-flat {
+  z-index: 1003;
+}
+
 canvas {
   margin: 2em;
   width: 50%;
