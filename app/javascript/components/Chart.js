@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from "react-materialize"
+import Parallax from 'parallax-js'
 var RadarChart = require('react-chartjs').Radar
 
 class MyComponent extends Component {
@@ -112,52 +113,58 @@ class MyComponent extends Component {
   render() {
 
     return (
-      <React.Fragment>
-        <RadarChart
-          data={{
-            labels: [
-              'joy', 'anger', 'disgust', 'sadness', 'fear'
-            ],
-            datasets: [
-              {
-                label: this.state.days.value1 + 'day(s) from now',
-                fillColor: "rgba(136, 135, 255,0.2)",
-                strokeColor: "rgba(136, 135, 255,1)",
-                pointColor: "rgba(136, 135, 255,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(136, 135, 255,1)",
-                data: [this.state.emotions1.joy, this.state.emotions1.anger, this.state.emotions1.disgust, this.state.emotions1.sadness, this.state.emotions1.fear]
-              }, {
-                label: this.state.days.value2 + 'day(s) from now',
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [this.state.emotions2.joy, this.state.emotions2.anger, this.state.emotions2.disgust, this.state.emotions2.sadness, this.state.emotions2.fear]
-              }
-            ]
-          }}
-          height={600}
-          width={700}
-          redraw />
+      <div className="chart">
+        <div data-hover-only="true" data-relative-input="true" id="scene" className="scene">
+        <div className="radar-chart" data-depth="0.3">
+        <React.Fragment>
+          <RadarChart 
+            data={{
+              labels: [
+                'joy', 'anger', 'disgust', 'sadness', 'fear'
+              ],
+              datasets: [
+                {
+                  label: this.state.days.value1 + 'day(s) from now',
+                  fillColor: "rgba(136, 135, 255,0.2)",
+                  strokeColor: "rgba(136, 135, 255,1)",
+                  pointColor: "rgba(136, 135, 255,1)",
+                  pointStrokeColor: "#fff",
+                  pointHighlightFill: "#fff",
+                  pointHighlightStroke: "rgba(136, 135, 255,1)",
+                  data: [this.state.emotions1.joy, this.state.emotions1.anger, this.state.emotions1.disgust, this.state.emotions1.sadness, this.state.emotions1.fear]
+                }, {
+                  label: this.state.days.value2 + 'day(s) from now',
+                  fillColor: "rgba(151,187,205,0.2)",
+                  strokeColor: "rgba(151,187,205,1)",
+                  pointColor: "rgba(151,187,205,1)",
+                  pointStrokeColor: "#fff",
+                  pointHighlightFill: "#fff",
+                  pointHighlightStroke: "rgba(151,187,205,1)",
+                  data: [this.state.emotions2.joy, this.state.emotions2.anger, this.state.emotions2.disgust, this.state.emotions2.sadness, this.state.emotions2.fear]
+                }
+              ]
+            }}
+            height={800}
+            width={800}
+            redraw />
+            </React.Fragment>
+            </div>
+          </div>
 
-        <form className="chartForm" onSubmit={this.handleSubmit}>
-          <label className="label1">
-            How many days ago?
-            <input name="emotions1" type="text" value={this.state.days.value1} onChange={e => this.handleChange('value1', e.target.value)} />
-          </label>
-          <br/>
-         <label className="label2">
-            How many days ago?
-            <input name="emotions2" type="text" value={this.state.days.value2} onChange={e => this.handleChange('value2', e.target.value)} />
-          </label>
-          <Button type="submit">Let's Compare</Button>
-        </form>
-
-      </React.Fragment>
+          <form className="chartForm" onSubmit={this.handleSubmit}>
+            <label className="label1">
+              How many days ago?
+              <input name="emotions1" type="text" value={this.state.days.value1} onChange={e => this.handleChange('value1', e.target.value)} />
+            </label>
+            <br/>
+          <label className="label2">
+              How many days ago?
+              <input name="emotions2" type="text" value={this.state.days.value2} onChange={e => this.handleChange('value2', e.target.value)} />
+            </label>
+            <Button type="submit">Let's Compare</Button>
+          </form>
+        
+      </div>
     )
   }
 }
