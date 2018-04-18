@@ -81,11 +81,11 @@ class MyComponent extends Component {
         let tempSum = emotionList[key].reduce(function (previousVal, currentVal) {
           return previousVal + currentVal;
         }, 0);
-        emotionAvg[key] = tempSum / emotionList[key].length;
+        emotionAvg[key] = (tempSum / emotionList[key].length) || 0;
       })
     }
     if (isNaN(emotionAvg.joy)){
-      alert ("Oh No! No data between these days.")
+      alert ("Oh No! No data between these days. Please try again.")
     } else {
     return emotionAvg;
     }
@@ -101,15 +101,12 @@ class MyComponent extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { days } = this.state;
-    let emotions1 = this.getEmotionAvg(this.state.listOfJournal, days.value1)
-    let emotions2 = this.getEmotionAvg(this.state.listOfJournal, days.value2)
-    this.setState({emotions1: emotions1, emotions2: emotions2});
-    console.log('A days was submitted111:');
-    console.log(emotions1)
-    console.log('A days was submitted222:');
-    console.log(emotions2)
-
+    this.setState({
+      emotions1: this.getEmotionAvg(this.state.listOfJournal, days.value1),
+      emotions2: this.getEmotionAvg(this.state.listOfJournal, days.value2)
+    });
   }
+
 
 
   render() {
@@ -152,14 +149,13 @@ class MyComponent extends Component {
             How many days from today?
             <input name="emotions1" type="text" value={this.state.days.value1} onChange={e => this.handleChange('value1', e.target.value)} />
           </label>
-          <br />
-          <label className="label2">
+          <br/>
+         <label className="label2">
             How many days from today?
             <input name="emotions2" type="text" value={this.state.days.value2} onChange={e => this.handleChange('value2', e.target.value)} />
           </label>
           <Button type="submit">Let's Compare</Button>
         </form>
-
 
       </React.Fragment>
     )
