@@ -23,7 +23,6 @@
   min-width: 800px;
 }
 
-
 .chart {
   display: flex;
   align-items: center;
@@ -33,12 +32,11 @@
 }
 
 .radar-chart canvas {
-  background: white;
-  border-radius: 10px;
+  background: $light-soil;
+  border-radius: 20px;
   padding: 20px;
   overflow: hidden;
   box-shadow: 0 0 50px 0 rgba(138, 138, 138, 0.25);
-
 }
 
 form.chartForm {
