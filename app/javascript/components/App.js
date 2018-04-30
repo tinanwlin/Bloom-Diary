@@ -63,7 +63,7 @@ export default class App extends React.Component {
             )}/>
             <Route component={NoMatch} />
           </Switch>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </BrowserRouter>
     )
